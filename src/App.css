@@ -50,7 +50,7 @@ body {
 .checkboxes {
   text-align: center;
   display: flexbox;
-  padding-bottom: 20px;
+
 }
 
 
@@ -117,6 +117,15 @@ body {
 .headline {
   color: #FDFFE2;
   margin: 10px;
+}
 
-
+.selection {
+  display: inline;
+  margin: 7px;
+  background-color : #83B4FF;
+  color: #FDFFE2;
+  width: 100px;
+  font-size: 14px;
+  border-radius: 10px;
+  height: 40px;
 }

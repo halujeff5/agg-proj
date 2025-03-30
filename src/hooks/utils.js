@@ -20,3 +20,11 @@ function getTitle(obj) {
 const unq = removeDuplicates(data, getTitle);
 return unq
 }
+
+export function handleClick(e) {
+    e.preventDefault()
+    let arr =[]
+    arr = [...arr, e.target.value]
+    arr.filter(item => item !== e.target.value)
+    console.log(arr)
+}

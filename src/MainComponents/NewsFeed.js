@@ -1,32 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, createContext, useContext } from 'react'
 import '../App.css'
 import ArticleCard from '../Cards/ArticleCard'
-import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { cleanData } from '../hooks/utils'
+import TagButton from './TagButton'
+import { MyContextProvider } from '../hooks/functionContext';
+
 
 const NewsFeed = () => {
-    const navigate = useNavigate()
-    const [checkboxes, setCheckboxes] = useState([])
-    const [articles, setArticles] = useState([]);
-    
-    
-    const handleCheckboxChange = (event) => {
-        event.preventDefault()
-        console.log('EVENT', event.target.value)
-        if (event.target.checked === true);
-        setCheckboxes([...checkboxes, event.target.value]);
 
-        if (event.target.checked === false)
-        setCheckboxes(checkboxes.filter(topic => topic !== event.target.value))
-        console.log('TEST', checkboxes)
-      };
-// console.log('checkboxes', {checkboxes})
+    const [checkboxes, setCheckboxes] = useState([]);
+    const [articles, setArticles] = useState([]);
+
+
 
     localStorage.setItem('checks', checkboxes)
-
-
-
+    
 
 
     const myTopicParams = {
@@ -38,137 +27,95 @@ const NewsFeed = () => {
         'science': 'science',
         'sports': 'sports',
         'technology': 'technology',
-       
+
     }
 
-async function getCategory() {
-    let pref = localStorage.getItem('checks')
-    console.log('prefs', pref)
-    let subj = pref ? pref.split(',') : '';
-    console.log('BING', subj)
-    let apiKey = process.env.REACT_APP_APIKEY
-    for (const [key, value] of Object.entries(myTopicParams))
-    {        
-    let options = `http://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${value}&languages=en` 
-    
-    if (subj[0] === key || subj[1] ===key || subj[2] === key || subj[3] === key || subj[4] === key)
-    try {
-        const resp = await axios.request(options);
-        console.log(resp.data.data)
-
-        let cleanedData = cleanData(resp.data.data)
-
-        setArticles((prevData) => [...prevData, ...cleanedData])
-        navigate('/')
-
-    }catch(err) {
-        console.log(err)
-    }}
-  
-};
-
-    
-    return (
-        <>    
-        <h1 className= 'newsfeed'>
-        Morning Feed Topics</h1>
-        <div className='checkboxes'>
-        <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='general'
-          value = 'general'
-          onChange={handleCheckboxChange}
-        />General
-      </label>
-
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='business'
-          value='business'
-        //   checked={checkboxes.business}
-          onChange={handleCheckboxChange}
-        />Business
-      </label>
-
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='entertainment'
-          value='entertainment'
-        //   checked={checkboxes.entertainment}
-          onChange={handleCheckboxChange}
-        />Entertainment
-      </label>
-
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='health'
-          value= 'health'
-        //   checked={checkboxes.health}
-          onChange={handleCheckboxChange}
-        />Health
-      </label>
-      </div>
-<div className= 'checkboxes'>
-
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='science'
-          value = 'science'
-        //   checked={checkboxes.science}
-          onChange={handleCheckboxChange}
-        />Science
-      </label>
+    async function getCategory() {
+        let pref = localStorage.getItem('ans')
+        console.log('pref', pref)
+        setCheckboxes([...checkboxes, pref])
+        console.log('checks', checkboxes)
+        let apiKey = process.env.REACT_APP_APIKEY
+        for (const [key, value] of Object.entries(myTopicParams)) {
 
 
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='sports'
-          value = 'sports'
-        //   checked={checkboxes.sports}
-          onChange={handleCheckboxChange}
-        />Sports
-      </label>
+             if (key === pref) 
+                // || checkboxes[1] === key || checkboxes[2] === key || checkboxes[3] === key || checkboxes[4] === key) 
+                {
 
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='technology'
-          value = 'technology'
-        //   checked={checkboxes.technology}
-          onChange={handleCheckboxChange}
-        />Technology
-      </label>
-      </div>
+                let options = `http://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${value}&languages=en&limit=42`
+                try {
+                    const resp = await axios.request(options);
+                    console.log('+1', 1)
 
-      <button className='save' onClick= {getCategory}>Feed</button>
-      <div className='container'>
-    {articles.map(c=> (
-        <ArticleCard title= {c.title}
-        key = {c.key}
-        url= {c.url}
-        description= {c.description} 
-        author = {c.author}
-        image= {c.image}
-        publishedAt= {c.published_at}
-        publisher= {c.source}
-        />
-        
-    ))}
-</div>
+                    let arr1 = resp.data.data
 
-    
-</>
+                    let cleanedData = cleanData(arr1)
 
-     
-        
+                    setArticles((prevData) => [...prevData, ...cleanedData])
+                
+                } catch (err) {
+                    console.log(err)
+                }
+            
+            }
+
+        // function savePreferences() {
+        //     localStorage.setItem('checks', checkboxes)
+        // }
+        // savePreferences()
+
+// };
+        }};
+
+    useEffect(() => {
+        getCategory()
+    }, [setCheckboxes]
     )
 
-}
+    return (
+        <>
+          <MyContextProvider>
+            <h1 className='newsfeed'>
+                Morning Feed</h1>
+
+            <div className='checkboxes'>
+                <TagButton prop='general' />
+                <TagButton prop='business' />
+                <TagButton prop='entertainment' />
+                <TagButton prop='health' />
+            </div>
+            <div className='checkboxes'>
+                <TagButton prop='science' />
+                <TagButton prop='sports' />
+                <TagButton prop='technology' />
+            </div>
+            <div className='container'>
+
+                {articles.map(c => (
+                    <ArticleCard title={c.title}
+                        key={c.key}
+                        url={c.url}
+                        description={c.description}
+                        author={c.author}
+                        image={c.image}
+                        publishedAt={c.published_at}
+                        publisher={c.source}
+                    />
+
+                ))}
+            </div>
+
+            </MyContextProvider>
+
+        </>
+
+
+
+
+
+    )
+
+                };
 
 export default NewsFeed
