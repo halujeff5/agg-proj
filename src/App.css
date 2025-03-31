@@ -127,8 +127,9 @@ body {
   width: fit;
   padding: 9px;
   font-size: 14px;
-  border-radius: 10px;
   height: 36px;
+  overflow: hidden;
+  border: none;
 }
 
 .welcome-2 {
@@ -140,4 +141,48 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 22;  
+}
+
+.dropdown {
+  
+  display: inline-block;
+}
+
+.dropdown-button {
+  background-color: #83B4FF;
+  color: #FDFFE2;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 14px;
+  min-width: 150px;
+
+}
+
+.dropdown-list {
+  color: black;
+  background-color: #FDFFE2;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 150px;
+  z-index: 1;
+}
+
+.dropdown-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.new-button {
+  display: inline;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 130px;
+  height: 36px;
+  border: none;
+  margin: 10px;
+  background-color : #5A72A0;
+  color: #FDFFE2;
 }
