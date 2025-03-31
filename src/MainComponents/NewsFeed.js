@@ -3,7 +3,7 @@ import '../App.css'
 import { useNavigate } from 'react-router'
 import ArticleCard from '../Cards/ArticleCard'
 import axios from 'axios'
-import { cleanData } from '../hooks/utils'
+import { cleanData, getImagesOnly } from '../hooks/utils'
 import TagButton from './TagButton'
 import { MyContextProvider } from '../hooks/functionContext';
 
@@ -13,6 +13,7 @@ const NewsFeed = () => {
     const [checkboxes, setCheckboxes] = useState([]);
     const [articles, setArticles] = useState([]);
     let pref = localStorage.getItem('ans')
+    console.log('IM HERE', pref)
     const navigate = useNavigate()
 
     localStorage.setItem('checks', checkboxes)
@@ -42,7 +43,7 @@ const NewsFeed = () => {
 
         //     if (checkboxes[0] === key || checkboxes[1] === key || checkboxes[2] === key || checkboxes[3] === key || checkboxes[4] === key) {
 
-                let options = `http://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=42`
+                let options = `http://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=70`
                 try {
                     const resp = await axios.request(options);
                     console.log('+1', 1)
@@ -50,9 +51,9 @@ const NewsFeed = () => {
                     let arr1 = resp.data.data
 
                     let cleanedData = cleanData(arr1)
-
-                    setArticles((prevData) => [...prevData, ...cleanedData])
-                    navigate('/feed')
+                    let cleaner = getImagesOnly(cleanedData)
+                    setArticles(cleaner)
+                  
 
                 } catch (err) {
                     console.log(err)
@@ -71,7 +72,7 @@ const NewsFeed = () => {
 
     useEffect(() => {
         getCategory()
-    }, [setCheckboxes]
+    }, [pref]
     )
 
     return (
@@ -91,6 +92,8 @@ const NewsFeed = () => {
                     <TagButton prop='sports' />
                     <TagButton prop='technology' />
                 </div>
+
+                <h1 className = 'welcome-2'>{pref}</h1>
                 <div className='container'>
 
                     {articles.map(c => (

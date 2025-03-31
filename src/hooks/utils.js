@@ -28,3 +28,15 @@ export function handleClick(e) {
     arr.filter(item => item !== e.target.value)
     console.log(arr)
 }
+
+export function getImagesOnly(data) {
+    let withImages = []
+    for (const obj of data) {
+        if (obj.image == null) {
+            continue
+        }else {
+            withImages.push(obj)
+        }
+    }
+    return withImages
+}

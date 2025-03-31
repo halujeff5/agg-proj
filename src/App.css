@@ -121,11 +121,23 @@ body {
 
 .selection {
   display: inline;
-  margin: 7px;
-  background-color : #83B4FF;
+  margin: 10px;
+  background-color : #5A72A0;
   color: #FDFFE2;
-  width: 100px;
+  width: fit;
+  padding: 9px;
   font-size: 14px;
   border-radius: 10px;
-  height: 40px;
+  height: 36px;
+}
+
+.welcome-2 {
+  text-align: left;
+  margin-top: 70px;
+  margin-left: 120px;
+  text-transform: capitalize;
+  background-image: linear-gradient(#FDFFE2, #FDFFE2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 22;  
 }

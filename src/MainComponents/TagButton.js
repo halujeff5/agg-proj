@@ -14,7 +14,7 @@ const TagButton = (prop) => {
         console.log('EVENT', event.target.value)
         let ansArr = []
         ansArr = [...ansArr, event.target.value] 
-        console.log('A', ansArr)
+        console.log('A', ansArr[0])
         ansArr.filter(item => item !== event.target.value) 
         console.log('ansArr', ansArr)
     
