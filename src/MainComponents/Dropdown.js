@@ -1,16 +1,16 @@
 import React, { useState, useContext, createContext } from 'react'
 import '../App.css'
-import 'react-dropdown/style.css'
 import { useNavigate } from 'react-router'
-
+import MyContext from '../hooks/MyContext'
 
 const Dropdown = (options) => {
 
+    const stateCtx = useContext(MyContext);
     const navigate = useNavigate()
+    
+    console.log('JEFF1', stateCtx.states)
 
-  
-    const topics = Object.values(options)
-    console.log(topics)    
+    const topics = Object.values(options)  
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState([])
     const [optionState, setOptionState] = useState([])
@@ -19,7 +19,7 @@ const Dropdown = (options) => {
         setSelectedOption(option);
         setOptionState(option)
         setIsOpen(false);
-        localStorage.setItem('context', selectedOption) 
+        stateCtx.addStates(option)
         navigate('/')  
     };
     

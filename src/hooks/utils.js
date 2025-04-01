@@ -40,3 +40,20 @@ export function getImagesOnly(data) {
     }
     return withImages
 }
+
+export function cleanCheckbox(array) {
+    let newArr =[]
+    for (let i =0; array.length; i++) {
+        if (array[i] == null) {
+            continue
+        } else {
+            newArr.push(array[i])
+        }
+        
+    }return newArr
+}
+
+export function removeDups(arr) {
+    const uniqueArr = [...new Set(arr)]
+    return uniqueArr
+}

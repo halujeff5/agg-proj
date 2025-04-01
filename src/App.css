@@ -140,12 +140,13 @@ body {
   background-image: linear-gradient(#FDFFE2, #FDFFE2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 22;  
+  font-size: 22;
+  z-index: 2;  
 }
 
 .dropdown {
-  
   display: inline-block;
+
 }
 
 .dropdown-button {
@@ -156,7 +157,6 @@ body {
   cursor: pointer;
   margin-top: 14px;
   min-width: 150px;
-
 }
 
 .dropdown-list {
@@ -165,7 +165,10 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   min-width: 150px;
+  height: 200px;
   z-index: 1;
 }
 
@@ -174,15 +177,50 @@ body {
   cursor: pointer;
 }
 
+.dropdown-list li:hover {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #FBE4D6;
+  color: #1A2130
+}
+
+.dropdown-list li:active {
+  padding: 10px;
+  cursor: pointer;
+  color: #FDFFE2;
+  background-color: #1A2130
+}
+
 .new-button {
   display: inline;
   position: relative;
   top: 0px;
   left: 0px;
-  width: 130px;
+  width: auto;
   height: 36px;
   border: none;
   margin: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  
   background-color : #5A72A0;
   color: #FDFFE2;
+}
+
+.button-display {
+  margin-left: 160px;
+  margin-right: 160px;
+  justify-content: center;
+  display : flex;
+  flex-wrap: wrap;
+  gap: 0px 15px;
+}
+
+.article-begin {
+  position: absolute;
+
+}
+
+.hidden-button {
+  display: none;
 }
