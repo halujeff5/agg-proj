@@ -33,9 +33,7 @@ export function MyContextProvider(props) {
         <MyContext.Provider value={value}>
             {props.children}
         </MyContext.Provider>
-        {/* <APIContext.Provider value= {value1}>
-            {props.children}
-        </APIContext.Provider> */}
+
         </>
     )
 }

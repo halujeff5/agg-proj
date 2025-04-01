@@ -11,10 +11,9 @@ import MyContext from '../hooks/MyContext'
 // accepts a state from contextAPI appends to checkboxes.
 // iterate over checkboxes state to map out the ButtonCards
 
-
-let topicArr = []
 const NewsFeed = () => {
 
+    const apiKey = process.env.REACT_APP_APIKEY
     const stateCtx = useContext(MyContext);
     console.log('PASS', stateCtx.states)
     const apiCtx = useContext(MyContext)
@@ -40,7 +39,7 @@ const NewsFeed = () => {
 
     async function getCategory() {
 
-        let apiKey = process.env.REACT_APP_APIKEY
+       
         let options = `http://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=70`
         try {
             const resp = await axios.get(options);
@@ -56,10 +55,27 @@ const NewsFeed = () => {
         }
     }
 
+    async function getAdditional() {
+        
+        let options = `http://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&languages=en&limit=70`
+
+        try {
+            const resp = await axios.get(options);
+
+            let arr1 = resp.data.data
+            let cleanedData = cleanData(arr1)
+            let cleaner = getImagesOnly(cleanedData)
+            setArticles(cleaner)
+        } catch(err) {
+            console.log(err)
+        }
+    }
+    
     let topicSelection = ['math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
 
     useEffect(() => {
         getCategory();
+        getAdditional()
         addTopic();
         cleanTopic();
      
@@ -82,8 +98,10 @@ const NewsFeed = () => {
                 <ButtonCard prop='science' />
                 <ButtonCard prop='sports' />
                 <ButtonCard prop='technology' />
+            </div>
 
-
+            <div className = 'added'>
+            <h2 className = 'newsfeed'>Additional</h2>
                 {checkboxes.map(c => (
                     <ButtonCard prop={c} />
                 ))}
