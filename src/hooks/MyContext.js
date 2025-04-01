@@ -6,7 +6,7 @@ export const MyContext = createContext({ states: 'artificial intelligence', pref
 
 export function MyContextProvider(props) {
 
-    const [activeState, setActiveState] = useState([])
+    const [activeState, setActiveState] = useState('artificial intelligence')
     const [getAPI, setGetAPI] = useState([])
 
     function addSelected(states) {
