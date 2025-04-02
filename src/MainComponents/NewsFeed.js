@@ -18,39 +18,42 @@ const NewsFeed = () => {
     console.log('PASS', stateCtx.states)
     const apiCtx = useContext(MyContext)
     const newTopic = stateCtx.states
-    let pref = apiCtx.pref
-    console.log('new topic', newTopic)
+    const pref = apiCtx.pref
+    console.log(pref)
+    console.log('new topic', [...newTopic])
     
     const delCtx = useContext(MyContext)
     console.log('jackpot!', delCtx.del)
 
 
-    const [checkboxes, setCheckboxes] = useState([`${stateCtx.states}`]);
+    const [checkboxes, setCheckboxes] = useState(['artificial intelligence']);
     const [articles, setArticles] = useState([]);
-    const [newTopics, setNewTopics] = useState(checkboxes)
+    const [newTopics, setNewTopics] = useState([stateCtx.states]);
 
+    console.log('here', newTopics)
     
-    function addTopic() {
-        setNewTopics([...newTopics, newTopic]);  
-    };
+    // function addTopic() {
+    
+    //     setNewTopics(stateCtx.states)  
+    // };
 
        
     function cleanTopic() {
-        let noDups = removeDups(newTopics)
+        let noDups = removeDups(stateCtx.states)
 
-        // setNewTopics([...newTopics, noDups])
+        setNewTopics(noDups)
     }
 
-    console.log(newTopics)
+    console.log('newTopics', newTopics)
     // console.log(checkboxes)
 
     function deleteNewTopic() {
-    setNewTopics(newTopics.filter(item => item !== delCtx.del))
+        stateCtx.deleteSelected(delCtx.del)
     }
 
 
     async function getCategory() {
-        let options = `http://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=70`
+        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=70`
         try {
             const resp = await axios.get(options);
             console.log('+1', 1)
@@ -86,16 +89,16 @@ const NewsFeed = () => {
     useEffect(() => {
         getCategory();
         getAdditional();
-        addTopic();
+        // addTopic();
         cleanTopic();
         deleteNewTopic();
      
-    }, [pref, newTopic]
+    }, [pref]
     )
 
     console.log('P', newTopics)
     console.log('G', checkboxes)
-
+    console.log('articles', articles)
  
     return (
         <>
@@ -117,7 +120,7 @@ const NewsFeed = () => {
 
             <div className = 'added'>
             <h2 className = 'newsfeed'>Additional</h2>
-                {newTopics.map(c => (
+                {stateCtx.states.map(c => (
                     <ButtonCard prop={c} />
                 ))}
             </div>

@@ -7,7 +7,7 @@ export const MyContext = createContext({ states: 'artificial intelligence', pref
 export function MyContextProvider(props) {
 
     //this is context to get term for API call according to topic 
-    const [activeState, setActiveState] = useState('artificial intelligence')
+    const [activeState, setActiveState] = useState(['artificial intelligence'])
     
     // this is context to get term for API call according to keyword
     const [getAPI, setGetAPI] = useState([])
@@ -17,7 +17,11 @@ export function MyContextProvider(props) {
 
     // function context to add state context into main context
     function addSelected(states) {
-        setActiveState(states)
+        setActiveState([...activeState, states])
+    }
+
+    function deleteSelected(states) {
+        setActiveState(activeState.filter((item) => item != states))
     }
 
     // function context to pass term for keyword onto keyword context to be used app wide
@@ -39,7 +43,8 @@ export function MyContextProvider(props) {
         del : delState,
         addStates : addSelected,
         addPrefs: passPref,
-        addStates1: addSelected1
+        addStates1: addSelected1,
+        deleteSelected : deleteSelected,
        
     }
 
