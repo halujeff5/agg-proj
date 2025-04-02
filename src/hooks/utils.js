@@ -18,7 +18,7 @@ export function cleanData(data) {
     }
 
     const unq = removeDuplicates(data, getTitle);
-    return [unq]
+    return unq
 }
 
 

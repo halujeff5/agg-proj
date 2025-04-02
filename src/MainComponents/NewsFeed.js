@@ -19,8 +19,7 @@ const NewsFeed = () => {
     const apiCtx = useContext(MyContext)
     const newTopic = stateCtx.states
     const pref = apiCtx.pref
-    console.log(pref)
-    console.log('new topic', [...newTopic])
+    console.log('What is this', pref)
     
     const delCtx = useContext(MyContext)
     console.log('jackpot!', delCtx.del)
@@ -32,12 +31,7 @@ const NewsFeed = () => {
 
     console.log('here', newTopics)
     
-    // function addTopic() {
-    
-    //     setNewTopics(stateCtx.states)  
-    // };
 
-       
     function cleanTopic() {
         let noDups = removeDups(stateCtx.states)
 
@@ -45,7 +39,7 @@ const NewsFeed = () => {
     }
 
     console.log('newTopics', newTopics)
-    // console.log(checkboxes)
+
 
     function deleteNewTopic() {
         stateCtx.deleteSelected(delCtx.del)
@@ -70,11 +64,11 @@ const NewsFeed = () => {
 
     async function getAdditional() {
         
-        let options = `http://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&languages=en&limit=70`
+        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&languages=en&limit=70`
 
         try {
             const resp = await axios.get(options);
-
+            console.log(resp.data.data)
             let arr1 = resp.data.data
             let cleanedData = cleanData(arr1)
             let cleaner = getImagesOnly(cleanedData)
@@ -89,7 +83,6 @@ const NewsFeed = () => {
     useEffect(() => {
         getCategory();
         getAdditional();
-        // addTopic();
         cleanTopic();
         deleteNewTopic();
      
