@@ -6,7 +6,7 @@ import { cleanData, getImagesOnly, removeDups } from '../hooks/utils'
 import Dropdown from './Dropdown'
 import ButtonCard from './ButtonCard'
 import MyContext from '../hooks/MyContext'
-
+import ButtonCardDefault from './ButtonCardDefault'
 
 // accepts a state from contextAPI appends to checkboxes.
 // iterate over checkboxes state to map out the ButtonCards
@@ -17,29 +17,39 @@ const NewsFeed = () => {
     const stateCtx = useContext(MyContext);
     console.log('PASS', stateCtx.states)
     const apiCtx = useContext(MyContext)
-    let newTopic = stateCtx.states
+    const newTopic = stateCtx.states
     let pref = apiCtx.pref
     console.log('new topic', newTopic)
+    
+    const delCtx = useContext(MyContext)
+    console.log('jackpot!', delCtx.del)
 
-    const [checkboxes, setCheckboxes] = useState(['artificial intelligence']);
+
+    const [checkboxes, setCheckboxes] = useState([`${stateCtx.states}`]);
     const [articles, setArticles] = useState([]);
-  
-    function addTopic() {
-        setCheckboxes([...checkboxes, newTopic])  
-    };
-
-    function cleanTopic() {
-        let noDups = removeDups([...checkboxes, newTopic])
-
-        setCheckboxes(noDups)
-    }
+    const [newTopics, setNewTopics] = useState(checkboxes)
 
     
-    console.log('checksMan', checkboxes)
-
-    async function getCategory() {
+    function addTopic() {
+        setNewTopics([...newTopics, newTopic]);  
+    };
 
        
+    function cleanTopic() {
+        let noDups = removeDups(newTopics)
+
+        // setNewTopics([...newTopics, noDups])
+    }
+
+    console.log(newTopics)
+    // console.log(checkboxes)
+
+    function deleteNewTopic() {
+    setNewTopics(newTopics.filter(item => item !== delCtx.del))
+    }
+
+
+    async function getCategory() {
         let options = `http://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=70`
         try {
             const resp = await axios.get(options);
@@ -70,18 +80,23 @@ const NewsFeed = () => {
             console.log(err)
         }
     }
-    
+
     let topicSelection = ['math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
 
     useEffect(() => {
         getCategory();
-        getAdditional()
+        getAdditional();
         addTopic();
         cleanTopic();
+        deleteNewTopic();
      
     }, [pref, newTopic]
     )
 
+    console.log('P', newTopics)
+    console.log('G', checkboxes)
+
+ 
     return (
         <>
 
@@ -91,18 +106,18 @@ const NewsFeed = () => {
             {/* accepts an array of chosen topics to be rendered through map */}
 
             <div className='button-display' >
-                <ButtonCard prop='general' />
-                <ButtonCard prop='business' />
-                <ButtonCard prop='entertainment' />
-                <ButtonCard prop='health' />
-                <ButtonCard prop='science' />
-                <ButtonCard prop='sports' />
-                <ButtonCard prop='technology' />
+                <ButtonCardDefault prop='general' />
+                <ButtonCardDefault prop='business' />
+                <ButtonCardDefault prop='entertainment' />
+                <ButtonCardDefault prop='health' />
+                <ButtonCardDefault prop='science' />
+                <ButtonCardDefault prop='sports' />
+                <ButtonCardDefault prop='technology' />
             </div>
 
             <div className = 'added'>
             <h2 className = 'newsfeed'>Additional</h2>
-                {checkboxes.map(c => (
+                {newTopics.map(c => (
                     <ButtonCard prop={c} />
                 ))}
             </div>

@@ -1,30 +1,45 @@
 import { createContext, useState } from 'react'
 
 
-export const MyContext = createContext({ states: 'artificial intelligence', pref: null})
+export const MyContext = createContext({ states: 'artificial intelligence', pref: null, del: null})
 
 
 export function MyContextProvider(props) {
 
+    //this is context to get term for API call according to topic 
     const [activeState, setActiveState] = useState('artificial intelligence')
+    
+    // this is context to get term for API call according to keyword
     const [getAPI, setGetAPI] = useState([])
 
+    const [delState, setDelState] = useState([])
+
+
+    // function context to add state context into main context
     function addSelected(states) {
         setActiveState(states)
     }
 
-
+    // function context to pass term for keyword onto keyword context to be used app wide
     function passPref(pref) {
         setGetAPI(pref)
     }
-    const context = { states: activeState, pref: getAPI }
 
+    function addSelected1(del) {
+        setDelState(del)
+    }
+
+   
+    const context = { states: activeState, pref: getAPI, del: delState }
+
+    // the values and functions we will need to accomplish our goal
     const value = {
         states : activeState,
         pref : getAPI,
+        del : delState,
         addStates : addSelected,
         addPrefs: passPref,
-
+        addStates1: addSelected1
        
     }
 

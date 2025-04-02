@@ -5,47 +5,40 @@ import MyContext from '../hooks/MyContext'
 
 // take in contextAPI state for optionSelected to be a prop and text value
 
-const ButtonCard = (prop) => {
+const ButtonCardDefault = (prop) => {
     const stateCtx = useContext(MyContext)
     const apiCtx = useContext(MyContext)
-    const delCtx = useContext(MyContext)
-
-    console.log(delCtx.del)
-
     console.log(prop.prop)
 
+    const [isHovered, setIsHovered] = useState(false)
+    
     function handleClick(event) {
-
+        
         event.preventDefault()
-
+    
         console.log('EVENT', event.target.value)
         let ansArr = []
-        ansArr = [...ansArr, event.target.value]
+        ansArr = [...ansArr, event.target.value] 
         console.log('A', ansArr[0])
-        ansArr.filter(item => item !== event.target.value)
+        ansArr.filter(item => item !== event.target.value) 
         console.log('ansArr', ansArr)
         localStorage.setItem('ans', ansArr)
         apiCtx.addPrefs(ansArr)
-
+        
     }
 
-
+    
     let text = prop.prop
     console.log('PROP', text)
 
-    function handleDelete() {
-    
-        delCtx.addStates1(prop.prop)
-    }
-
     return (
-        <>
-          <button className='new-button-special' value={text} onClick={handleClick}>{text}
-                <img className='icon-relative' onClick={handleDelete} src={delIcon} alt='small-icon'></img>
-            </button>
-        </>
+      
+        // <div className = 'entire-button'>
+        <button className='new-button' value= {text} onClick={handleClick}>{text}
+        </button>
+        // </div>
     )
 
 }
 
-export default ButtonCard
+export default ButtonCardDefault
