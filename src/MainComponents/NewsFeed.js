@@ -37,7 +37,7 @@ const NewsFeed = () => {
     function deleteNewTopic() {
         stateCtx.deleteSelected(delCtx.del)
     }
-
+    console.log(pref)
     // fetch API for news articles according to {pref}
     async function getCategory() {
         let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=70`
@@ -80,11 +80,11 @@ const NewsFeed = () => {
         getAdditional();
         cleanTopic();
         deleteNewTopic();
-     
     }, [pref]
     )
 
- 
+    let subj = pref == null ? pref : 'Breaking';
+
     return (
         <>
 
@@ -114,7 +114,7 @@ const NewsFeed = () => {
             </div>
 
             <div className='article-begin'>
-                <h1 className='welcome-2'>{pref}</h1>
+                <h1 className='welcome-2'>{subj}</h1>
                 <div className='container'>
 
                     {articles.map(c => (

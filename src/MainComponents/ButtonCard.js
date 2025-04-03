@@ -15,32 +15,19 @@ const ButtonCard = (prop) => {
     console.log(prop.prop)
 
     function handleClick(event) {
-
         event.preventDefault()
-
-        console.log('EVENT', event.target.value)
-        let ansArr = []
-        ansArr = [...ansArr, event.target.value]
-        console.log('A', ansArr[0])
-        ansArr.filter(item => item !== event.target.value)
-        console.log('ansArr', ansArr)
-        localStorage.setItem('ans', ansArr)
-        apiCtx.addPrefs(ansArr)
-
+        apiCtx.addPrefs(event.target.value)
     }
 
-
     let text = prop.prop
-    console.log('PROP', text)
 
     function handleDelete() {
-    
         delCtx.addStates1(prop.prop)
     }
 
     return (
         <>
-          <button className='new-button-special' value={text} onClick={handleClick}>{text}
+            <button className='new-button-special' value={text} onClick={handleClick}>{text}
                 <img className='icon-relative' onClick={handleDelete} src={delIcon} alt='small-icon'></img>
             </button>
         </>

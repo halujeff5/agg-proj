@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-
 } 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Quicksand:wght@300..700&display=swap');
 
@@ -12,6 +11,7 @@ body {
   font-weight: 100;
   background-color: #1A2130;
   text-align: center;
+
 }
 
 .tab {
@@ -144,7 +144,7 @@ body {
 .welcome-2 {
   text-align: left;
   margin-top: 70px;
-  margin-left: 120px;
+  margin-left: 210px;
   text-transform: capitalize;
   background-image: linear-gradient(#FDFFE2, #FDFFE2);
   -webkit-background-clip: text;
@@ -267,4 +267,11 @@ body {
   font-weight: 300px;
   font-size: 14px;
   margin-right: 35px;
+
 }
+
+/* .additional-button {
+  display: inline;
+  margin: 0 auto;
+  text-align: center;
+} */

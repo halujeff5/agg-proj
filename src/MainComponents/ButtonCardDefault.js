@@ -9,15 +9,8 @@ const ButtonCardDefault = (prop) => {
     const apiCtx = useContext(MyContext)
     
     function handleClick(event) {
-        
         event.preventDefault()
-        let ansArr = []
-        ansArr = [...ansArr, event.target.value] 
-
-        ansArr.filter(item => item !== event.target.value) 
-
-        apiCtx.addPrefs(ansArr)
-        
+        apiCtx.addPrefs(event.target.value)
     }
 
     let text = prop.prop
