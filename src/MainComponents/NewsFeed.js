@@ -78,7 +78,7 @@ const NewsFeed = () => {
         }
     }
 
-    let topicSelection = ['math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
+    let topicSelection = ['artificial intelligence','math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
 
     useEffect(() => {
         getCategory();
