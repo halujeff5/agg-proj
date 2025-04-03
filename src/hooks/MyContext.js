@@ -12,6 +12,7 @@ export function MyContextProvider(props) {
     // this is context to get term for API call according to keyword
     const [getAPI, setGetAPI] = useState([])
 
+    // this context that captures the delete button value
     const [delState, setDelState] = useState([])
 
 
@@ -19,7 +20,7 @@ export function MyContextProvider(props) {
     function addSelected(states) {
         setActiveState([...activeState, states])
     }
-
+    // function context to return arr without the selceted state 
     function deleteSelected(states) {
         setActiveState(activeState.filter((item) => item != states))
     }
@@ -29,6 +30,7 @@ export function MyContextProvider(props) {
         setGetAPI(pref)
     }
 
+    // function makes the del term available app wide via delCTX 
     function addSelected1(del) {
         setDelState(del)
     }

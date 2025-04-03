@@ -14,38 +14,31 @@ import ButtonCardDefault from './ButtonCardDefault'
 const NewsFeed = () => {
 
     const apiKey = process.env.REACT_APP_APIKEY
+    // this context holds the selected states 
     const stateCtx = useContext(MyContext);
-    console.log('PASS', stateCtx.states)
+    //this context holds selected to make the API call
     const apiCtx = useContext(MyContext)
     const newTopic = stateCtx.states
     const pref = apiCtx.pref
-    console.log('What is this', pref)
     
+    // context of what to delete from x icon 
     const delCtx = useContext(MyContext)
-    console.log('jackpot!', delCtx.del)
-
 
     const [checkboxes, setCheckboxes] = useState(['artificial intelligence']);
     const [articles, setArticles] = useState([]);
     const [newTopics, setNewTopics] = useState([stateCtx.states]);
-
-    console.log('here', newTopics)
     
-
+    // removes duplicates from arr of selected topics (default topics not included)
     function cleanTopic() {
         let noDups = removeDups(stateCtx.states)
-
         setNewTopics(noDups)
     }
-
-    console.log('newTopics', newTopics)
-
-
+    // context of a function that filters out the term and returns new arr of topis for user
     function deleteNewTopic() {
         stateCtx.deleteSelected(delCtx.del)
     }
 
-
+    // fetch API for news articles according to {pref}
     async function getCategory() {
         let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=70`
         try {
@@ -53,8 +46,9 @@ const NewsFeed = () => {
             console.log('+1', 1)
 
             let arr1 = resp.data.data
-
+    // using utils.js function to clean resp object
             let cleanedData = cleanData(arr1)
+    // using utils.js to keep only articles with images
             let cleaner = getImagesOnly(cleanedData)
             setArticles(cleaner)
         } catch (err) {
@@ -62,6 +56,7 @@ const NewsFeed = () => {
         }
     }
 
+    // these are topics that are not default 
     async function getAdditional() {
         
         let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&languages=en&limit=70`
@@ -77,7 +72,7 @@ const NewsFeed = () => {
             console.log(err)
         }
     }
-
+    // this populates the dropdown list
     let topicSelection = ['artificial intelligence','math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
 
     useEffect(() => {
@@ -89,9 +84,6 @@ const NewsFeed = () => {
     }, [pref]
     )
 
-    console.log('P', newTopics)
-    console.log('G', checkboxes)
-    console.log('articles', articles)
  
     return (
         <>

@@ -31,7 +31,6 @@ const ArticleCard = ({ title, key, url, description, author, image, publishedAt,
                 <img className='image-serve' src={imageURL && imageURL.trim() !== '' ? image : placeholder}></img>
 
                 <a className='no-underline' href={url} target='_blank' rel="noreferrer"><h2 className='headline'>{title}</h2></a>
-                {/* <h4 className= 'welcome'>{description}</h4> */}
                 <h5 className='welcome'>Author: {author}</h5>
                 <h5 className='welcome'>Publication: {publisher}</h5>
                 <h6 className='earlier'>{hrsAgo}</h6>
