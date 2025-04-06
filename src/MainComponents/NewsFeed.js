@@ -7,6 +7,7 @@ import Dropdown from './Dropdown'
 import ButtonCard from './ButtonCard'
 import MyContext from '../hooks/MyContext'
 import ButtonCardDefault from './ButtonCardDefault'
+import YoutubeFeed from './YoutubeFeed'
 
 // accepts a state from contextAPI appends to checkboxes.
 // iterate over checkboxes state to map out the ButtonCards
@@ -37,10 +38,10 @@ const NewsFeed = () => {
     function deleteNewTopic() {
         stateCtx.deleteSelected(delCtx.del)
     }
-    console.log(pref)
+   
     // fetch API for news articles according to {pref}
     async function getCategory() {
-        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=70`
+        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&categoris=${pref}&languages=en&limit=70`
         try {
             const resp = await axios.get(options);
             console.log('+1', 1)
@@ -59,7 +60,7 @@ const NewsFeed = () => {
     // these are topics that are not default 
     async function getAdditional() {
         
-        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&languages=en&limit=70`
+        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywods=${pref}&languages=en&limit=70`
 
         try {
             const resp = await axios.get(options);
@@ -83,17 +84,17 @@ const NewsFeed = () => {
     }, [pref]
     )
 
-    let subj = pref == null ? pref : 'Breaking';
+    let subj = pref == null ? 'Breaking' : pref;
 
     return (
-        <>
+        <body className = 'newsfeed-div'>
 
             <h1 className='newsfeed'>
                 Morning Feed</h1>
 
             {/* accepts an array of chosen topics to be rendered through map */}
 
-            <div className='button-display' >
+            {/* <div className='button-display' >
                 <ButtonCardDefault prop='general' />
                 <ButtonCardDefault prop='business' />
                 <ButtonCardDefault prop='entertainment' />
@@ -101,17 +102,17 @@ const NewsFeed = () => {
                 <ButtonCardDefault prop='science' />
                 <ButtonCardDefault prop='sports' />
                 <ButtonCardDefault prop='technology' />
-            </div>
+            </div> */}
 
-            <div className = 'added'>
+            {/* <div className = 'added'>
             <h2 className = 'newsfeed'>Additional</h2>
                 {stateCtx.states.map(c => (
                     <ButtonCard prop={c} />
                 ))}
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
                 <Dropdown {...topicSelection} />
-            </div>
+            </div> */}
 
             <div className='article-begin'>
                 <h1 className='welcome-2'>{subj}</h1>
@@ -131,8 +132,10 @@ const NewsFeed = () => {
                     ))}
                 </div>
             </div>
-
-        </>
+            <div className= 'article-begin'>
+            <YoutubeFeed />
+            </div>
+        </body>
 
     )
 

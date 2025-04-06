@@ -1,9 +1,8 @@
 .App {
   text-align: center;
 } 
+
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Quicksand:wght@300..700&display=swap');
-
-
 
 body {
   padding: 25px;
@@ -11,7 +10,6 @@ body {
   font-weight: 100;
   background-color: #1A2130;
   text-align: center;
-
 }
 
 .tab {
@@ -79,7 +77,7 @@ body {
 
 .article-box {
   border: 1px, #FDFFE2, solid;
-  width: 400px;
+  width: 350px;
   text-wrap: wrap;
   text-align: center;
   border-radius: 10px;
@@ -93,7 +91,7 @@ body {
 
 .image-serve {
   aspect-ratio: auto;
-  height: 200px;
+  height: 160px;
   border-radius: 20px;
 }
 
@@ -102,8 +100,8 @@ body {
   margin-top: 25px;
   display: inline-flex;  
   flex-wrap: wrap;
-  text-align: center;
-  justify-content: center;
+  text-align: left;
+  justify-content: left;
   
 }
 
@@ -128,6 +126,12 @@ body {
   margin: 10px;
 }
 
+.article-begin {
+  display: block;
+  text-align: left;
+  margin-left: 210px;
+}
+
 .selection {
   display: inline;
   margin: 10px;
@@ -142,9 +146,9 @@ body {
 }
 
 .welcome-2 {
-  text-align: left;
+  
   margin-top: 70px;
-  margin-left: 210px;
+  /* margin-left: 210px; */
   text-transform: capitalize;
   background-image: linear-gradient(#FDFFE2, #FDFFE2);
   -webkit-background-clip: text;
@@ -155,17 +159,24 @@ body {
 
 .dropdown {
   display: inline-block;
+  width: 195px;
+  z-index: 1;
+  text-align: left;
+  margin-left: -25px;
 
 }
 
 .dropdown-button {
+  text-align: left;
   background-color : #5A72A0;
   color: #FDFFE2;
-  padding: 10px 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border: none;
   cursor: pointer;
-  margin-top: 14px;
-  min-width: 165px;
+  margin-top: 0px;
+  min-width: 195px;
+  font-size: 15px;
 }
 
 .dropdown-list {
@@ -182,12 +193,15 @@ body {
 }
 
 .dropdown-list li {
-  padding: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 15px;
   cursor: pointer;
 }
 
 .dropdown-list li:hover {
-  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   cursor: pointer;
   background-color: #FBE4D6;
   color: #1A2130
@@ -201,25 +215,27 @@ body {
 }
 
 .new-button {
-  display: inline;
-  position: relative;
+  display: block;
+  /* position: relative; */
+  margin-left: -28px;
   top: 0px;
   font-family: "Quicksand", sans-serif;
-  font-weight: 300;
-  font-size: 15px;
+  font-weight: 100;
+  font-size: 17px;
   font-style: bold;
-  left: 0px;
+  /* left: 0px; */
   width: 140px;
-  height: 36px;
+  /* height: 36px; */
   border: none;
-  margin: 10px;
+  /* margin: 10px;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 20px; */
   z-index: 1;
-  background-color: #83B4FF;
+  background-color: #1A2130;
   color: #FDFFE2;
-  text-align: center;
-  line-height: 36px;
+  text-align: left;
+  margin-bottom: 10px;
+  /* line-height: 36px; */
 }
 
 .button-display {
@@ -244,34 +260,90 @@ body {
   width: 27px;
   height: 27px;
   position: absolute;
-  left: 129px;
-  top: -3px;
-  background-color : #5A72A0;
-  opacity: 75%;
+  left: 200px;
+  top: 3px;
+  color : #1A2130;
+  opacity: 20%;
   z-index: 2
 }
 
 .new-button-special {
-  display: inline;
+  display: block;
   position: relative;
-  width: 150px;
-  height: 36px;
-  font-style: bold;
-  line-height: 36px;
+  /* width: 150px; */
+  /* height: 36px; */
+  /* line-height: 36px; */
   color: #FDFFE2;
   border: none;
   z-index: 1;
-  background-color: #83B4FF;
-  margin-bottom: 10px;
   font-family: "Quicksand", sans-serif;
-  font-weight: 300px;
-  font-size: 14px;
-  margin-right: 35px;
+  font-size: 17px;
+  margin-bottom: 10px;
+  margin-left: -29px;
+  margin-top: 10px;
+  background-color:  #1A2130;
 
 }
 
-/* .additional-button {
-  display: inline;
-  margin: 0 auto;
-  text-align: center;
-} */
+h1 {
+  font-size: 19px; 
+}
+
+ul, li {
+  list-style-type: none;
+  margin-left: 5px;
+
+}
+
+li {
+  text-align: left;
+  margin-bottom: 10px;
+  margin-left: -5px;
+  font-size: 17px; 
+}
+
+.menu-item {
+  margin-left: -35px;
+}
+
+.sidebar {
+  text-align: left;
+  display: inline-flex;
+  height: 100%;
+  width: 280px;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  color: #FBE4D6;
+  background-color: #1A2130;
+  padding-top: 160px;
+  margin-left: 25px;
+  transition: .5s;
+  overflow-y: auto;
+  overflow-x: hidden; 
+  
+}
+
+.sidebar-menu {
+  display: block;
+  color: 'white';
+  border-right: 1px solid black; 
+  padding-right: 80px;
+}
+.newsfeed-div {
+  margin-left: 120px;
+  display: block;
+}
+
+.youtube {
+  display: block;
+  margin-left: 120px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.header {
+  color: #FDFFE2;
+}
+

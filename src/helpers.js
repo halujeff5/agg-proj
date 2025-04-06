@@ -11,7 +11,7 @@ export class Helpers {
 
         const url = `${BASE_URL}/${endpoint}`;
         const token = localStorage.getItem('token')
-        const headers = { Authorization: `Bearer ${token}` };
+        const headers = { Authorization: token };
        
         const params = (method === 'get')
             ? data
@@ -37,5 +37,13 @@ export class Helpers {
             }
         }
 
+
+    }
+
+    static async fetchYoutube() {
+        let res = await this.request('youtube')
+        console.log(res.status)
+        console.log(res.data)
+        return res.data
     }
 }

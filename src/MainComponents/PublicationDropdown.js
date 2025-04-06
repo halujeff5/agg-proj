@@ -3,25 +3,23 @@ import '../App.css'
 import { useNavigate } from 'react-router'
 import MyContext from '../hooks/MyContext'
 
-const Dropdown = (options) => {
+const PublicationDropdown = (options) => {
 
     const pubCtx = useContext(MyContext)
-    const stateCtx = useContext(MyContext);
     const navigate = useNavigate()
     
     const topics = Object.values(options)  
     const [isOpen, setIsOpen] = useState(false)
-    const [selectedOption, setSelectedOption] = useState([])
-    const [optionState, setOptionState] = useState([])
+    // const [selectedOption, setSelectedOption] = useState([])
+    // const [optionState, setOptionState] = useState([])
 
     const handleClickOption = (option) => {
-        setSelectedOption(option);
-        setOptionState(option)
+        // setSelectedOption(option);
+        // setOptionState(option)
         setIsOpen(false);
-        stateCtx.addStates(option);
-    
+        pubCtx.addSelectedPub(option);
 
-        navigate('/');  
+        // navigate('/');  
     };
     
     
@@ -50,4 +48,4 @@ const Dropdown = (options) => {
 
 }
 
-export default Dropdown
+export default PublicationDropdown

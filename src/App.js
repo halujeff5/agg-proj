@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path = '/' exact element= {<Welcome />}></Route>
-      <Route path = '/feed' exact element= {<NewsFeed />}></Route>
+      {/* <Route path = '/feed' exact element= {<NewsFeed />}></Route> */}
     
     </Routes>
     </BrowserRouter>
