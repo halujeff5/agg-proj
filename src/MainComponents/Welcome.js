@@ -14,12 +14,8 @@ const Welcome = () => {
         <h1 className = 'welcome-1'>News. Your Way.</h1>
         </div>
       
-      
-        <Sidebar />
-
-        <div className = 'splitting-page'>
         <NewsFeed />
-        </div>
+     
       
         </body>
     )

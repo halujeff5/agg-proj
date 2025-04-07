@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import '../App.css'
 import delIcon from '../static/icons8-x-48.jpg'
 import MyContext from '../hooks/MyContext'
@@ -6,10 +6,10 @@ import MyContext from '../hooks/MyContext'
 // take in contextAPI state for optionSelected to be a prop and text value
 
 const ButtonCard = (prop) => {
+
     const stateCtx = useContext(MyContext)
     const apiCtx = useContext(MyContext)
     const delCtx = useContext(MyContext)
-    // const pubCtx = useContext(MyContext)
 
     function handleClick(event) {
         event.preventDefault()

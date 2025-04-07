@@ -4,6 +4,7 @@ import ArticleCard from '../Cards/ArticleCard'
 import axios from 'axios'
 import { cleanData, getImagesOnly, removeDups } from '../hooks/utils'
 import Dropdown from './Dropdown'
+import Sidebar from './Sidebar'
 import ButtonCard from './ButtonCard'
 import MyContext from '../hooks/MyContext'
 import ButtonCardDefault from './ButtonCardDefault'
@@ -114,6 +115,7 @@ const NewsFeed = () => {
                 <Dropdown {...topicSelection} />
             </div> */}
 
+            <Sidebar />
             <div className='article-begin'>
                 <h1 className='welcome-2'>{subj}</h1>
                 <div className='container'>
@@ -131,8 +133,8 @@ const NewsFeed = () => {
 
                     ))}
                 </div>
-            </div>
-            <div className= 'article-begin'>
+           
+            
             <YoutubeFeed />
             </div>
         </body>

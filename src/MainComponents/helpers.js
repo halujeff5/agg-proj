@@ -23,27 +23,15 @@ export class Helpers {
                 headers
             }));
         } catch (err) {
-            console.log('test', err)
-            if (err.response) {
-
-
-                console.error("API Error:", err.response.data);
-                console.log(err.response.data)
-                let message = err.response.data.error;
-                throw Array.isArray(message) ? message : [message];
-            }
-            else {
-                console.error(err)
-            }
+            console.log(err)
         }
-
 
     }
 
-    static async fetchYoutube() {
-        let res = await this.request('youtube')
+    static async fetchYoutube(term) {
+        let res = await this.request('youtube', { term })
+        console.log('Im HERE', res.statusText)
         console.log(res.status)
-        console.log(res.data)
         return res.data
     }
 }

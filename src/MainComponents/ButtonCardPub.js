@@ -7,21 +7,21 @@ import MyContext from '../hooks/MyContext'
 // take in contextAPI state for optionSelected to be a prop and text value
 
 const ButtonCardPub = (prop) => {
-    // const stateCtx = useContext(MyContext)
+    const ytCtx = useContext(MyContext)
     const delCtx = useContext(MyContext)
     const pubCtx = useContext(MyContext)
 
     function handleClick(event) {
         event.preventDefault()
-        // apiCtx.addPrefs(event.target.value)
+        ytCtx.fetchYTAPI(event.target.value)
         pubCtx.getSelectedPub(event.target.value)
     }
 
     let text = prop.prop
 
     function handleDelete() {
- 
         pubCtx.delPublication(text)
+        ytCtx.delYTchannel(text)
     
     }
 

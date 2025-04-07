@@ -3,7 +3,9 @@ import '../App.css'
 import ButtonCard from './ButtonCard';
 import MyContext from '../hooks/MyContext';
 import ButtonCardDefault from './ButtonCardDefault';
+// import channelId from '../channelIds;'
 import Dropdown from './Dropdown';
+import YoutubeDropdown from './YoutubeDropdown';
 import PublicationDropdown from './PublicationDropdown';
 import ButtonCardPub from './ButtonCardPub';
 
@@ -18,6 +20,7 @@ const Sidebar = () => {
     const apiCtx = useContext(MyContext)
     const delCtx = useContext(MyContext)
     const pubCtx = useContext(MyContext)
+    const ytCtx = useContext(MyContext)
 
     console.log(pubCtx.pub)
     console.log(stateCtx.states)
@@ -64,6 +67,10 @@ const Sidebar = () => {
             </ul>
             <h1>Podcasts</h1>
             <h1>Youtube Search</h1>
+            <YoutubeDropdown />
+            {ytCtx.yt.map(c => (
+                <ButtonCardPub prop = {c} />
+            ))}
             </div>
         </div>
         </>

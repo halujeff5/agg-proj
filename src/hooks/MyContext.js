@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react'
 
 
-export const MyContext = createContext({ states: 'artificial intelligence', pref: null, del: null, pub: 'BBC News'})
+export const MyContext = createContext({ states: 'artificial intelligence', pref: null, del: null, pub: 'BBC News', yt: 'Bloomberg Television'})
 
 
 export function MyContextProvider(props) {
@@ -24,11 +24,23 @@ export function MyContextProvider(props) {
     // this context is to delete publisher from publisher list (pubState)
     const [delPubState, setDelPubState] = useState([])
 
+    //this context gets yt state
+    const [ytState, setYTState] = useState([])
+
+    //this context get yt option for API call 
+    const [getYTAPI, setGetYTAPI] = useState([])
+
+    //this context is to delete the yt option
+    const [delYT, setDelYT] = useState([])
 
     // function context to add state context into main context
     function addSelected(states) {
         setActiveState([...activeState, states])
     }
+    // function context to pass term for keyword onto keyword context to be used app wide
+    function passPref(pref) {
+        setGetAPI(pref)
+        }
     // function context to return arr without the selceted state 
     function deleteSelected(states) {
         setActiveState(activeState.filter((item) => item !== states))
@@ -46,34 +58,51 @@ export function MyContextProvider(props) {
         setPubState(pubState.filter((item) => item !== pub))
     }
 
-    // function context to pass term for keyword onto keyword context to be used app wide
-    function passPref(pref) {
-        setGetAPI(pref)
-    }
-
     // function makes the del term available app wide via delCTX 
     function addSelected1(del) {
         setDelState(del)
     }
+    //functional list of selected YT channels
+    function addYtChannel(yt) {
+        setYTState([...ytState, yt])
+    }
+    // get the right channel to make API call
+    function addYtAPI(yt) {
+        setGetYTAPI(yt)
+    }
+    // get the right channel marked for deletion
+    function delYTchannel(yt) {
+        setYTState(ytState.filter((item) => item !== yt))
+    }
 
-   
-    const context = { states: activeState, pref: getAPI, del: delState, pub: pubState }
+
+
+    const context = { states: activeState, pref: getAPI, del: delState, pub: pubState, yt: ytState, sel: getYTAPI }
 
     // the values and functions we will need to accomplish our goal
     const value = {
+        //news category states/functions
         states : activeState,
-        pref : getAPI,
-        del : delState,
-        pub: pubState,
-        puboption: getPublisher,
         addStates : addSelected,
         addPrefs: passPref,
         addStates1: addSelected1,
+        pref : getAPI,
+        del : delState,
+
+        //publication states/functions
+        pub: pubState,
+        puboption: getPublisher,
         deleteSelected : deleteSelected,
         addSelectedPub: addSelectedPub,
         getSelectedPub: getSelectedPub,
         delPublication : delPublication,
        
+        //yt channel states/functions
+        yt: ytState,
+        addYT: addYtChannel,
+        fetchYTAPI: addYtAPI,
+        delYTchannel : delYTchannel,
+        sel : getYTAPI,
     }
 
     return (
