@@ -38,8 +38,8 @@ export function MyContextProvider(props) {
         setActiveState([...activeState, states])
     }
     // function context to pass term for keyword onto keyword context to be used app wide
-    function passPref(pref) {
-        setGetAPI(pref)
+    function passPref(states) {
+        setGetAPI(states)
         }
     // function context to return arr without the selceted state 
     function deleteSelected(states) {

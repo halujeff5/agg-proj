@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import '../App.css'
 import MyContext from '../hooks/MyContext'
 import { Helpers } from './helpers'
-import YoutubeCard from './YoutubeCard'
+import YoutubeVideos from './YoutubeVideos'
 
 const YoutubeFeed = () => {
 
@@ -12,19 +12,19 @@ const YoutubeFeed = () => {
     
     console.log(ytCtx.sel)
     const term = ytCtx.sel
+    let subj = term == null ? null : term
 
     async function getVideoByCat() {
         try {
             let res = await Helpers.fetchYoutube(term)
             console.log('checking', res)
-            localStorage.setItem('test', res)
+
             setYTdata(res)    
         } catch (e) {
             console.log(e)
         }
     }
 
-    console.log(localStorage.getItem('test'))
     useEffect(() => {
         getVideoByCat();
     }, [term])
@@ -32,14 +32,14 @@ const YoutubeFeed = () => {
     console.log('IM HERE 2', ytdata)
     return (
         <>
+  
             <div className='youtube'>
-                
+       
+                <h1 className= 'welcome-2'>{subj} Breaking</h1>
                 {ytdata.map(c => (
-                    <YoutubeCard
+                    <YoutubeVideos
                         videoId={c.id.videoId}
-                        channelTitle={c.snippet.channelTitle}
-                        thumbnails_def={c.snippet.thumbnails.high.url}
-                        thumbTitle={c.snippet.title} />
+                        />
                 ))}
 
             </div>

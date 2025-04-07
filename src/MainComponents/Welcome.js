@@ -11,7 +11,10 @@ const Welcome = () => {
         <body>
         <div className= 'tab'>
         <img className='logo-size' src = {logo} alt='logo' />
-        <h1 className = 'welcome-1'>News. Your Way.</h1>
+        <div className='slogan'>
+        <h1 className = 'welcome-1'>Your</h1> 
+        <h1 className = 'welcome-1'>News Media</h1>
+        </div>
         </div>
       
         <NewsFeed />

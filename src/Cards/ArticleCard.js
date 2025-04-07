@@ -27,13 +27,26 @@ const ArticleCard = ({ title, key, url, description, author, image, publishedAt,
     return (
         <>
             <div className='article-box'>
-
+                <div className= 'intro-title'>
                 <img className='image-serve' src={imageURL && imageURL.trim() !== '' ? image : placeholder}></img>
-
+                </div>
+                <div className = 'intro-title'>
                 <a className='no-underline' href={url} target='_blank' rel="noreferrer"><h2 className='headline'>{title}</h2></a>
+                </div>
                 <h5 className='welcome'>Author: {author}</h5>
                 <h5 className='welcome'>Publication: {publisher}</h5>
                 <h6 className='earlier'>{hrsAgo}</h6>
+
+<hr
+style = {{
+    color: '#FDFFE2',
+    backgroundColor: '#FDFFE2',
+    height: .25,
+    width: '1200px',
+    marginLeft: '10px'
+}}
+/>
+            
             </div>
         </>
     )

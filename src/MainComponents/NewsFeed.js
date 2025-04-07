@@ -23,6 +23,8 @@ const NewsFeed = () => {
     const newTopic = stateCtx.states
     const pref = apiCtx.pref
     
+    console.log('pref', pref)
+
     // context of what to delete from x icon 
     const delCtx = useContext(MyContext)
 
@@ -42,7 +44,7 @@ const NewsFeed = () => {
    
     // fetch API for news articles according to {pref}
     async function getCategory() {
-        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&categoris=${pref}&languages=en&limit=70`
+        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=40`
         try {
             const resp = await axios.get(options);
             console.log('+1', 1)
@@ -61,7 +63,7 @@ const NewsFeed = () => {
     // these are topics that are not default 
     async function getAdditional() {
         
-        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywods=${pref}&languages=en&limit=70`
+        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&languages=en&limit=40`
 
         try {
             const resp = await axios.get(options);
@@ -91,29 +93,7 @@ const NewsFeed = () => {
         <body className = 'newsfeed-div'>
 
             <h1 className='newsfeed'>
-                Morning Feed</h1>
-
-            {/* accepts an array of chosen topics to be rendered through map */}
-
-            {/* <div className='button-display' >
-                <ButtonCardDefault prop='general' />
-                <ButtonCardDefault prop='business' />
-                <ButtonCardDefault prop='entertainment' />
-                <ButtonCardDefault prop='health' />
-                <ButtonCardDefault prop='science' />
-                <ButtonCardDefault prop='sports' />
-                <ButtonCardDefault prop='technology' />
-            </div> */}
-
-            {/* <div className = 'added'>
-            <h2 className = 'newsfeed'>Additional</h2>
-                {stateCtx.states.map(c => (
-                    <ButtonCard prop={c} />
-                ))}
-            </div> */}
-            {/* <div>
-                <Dropdown {...topicSelection} />
-            </div> */}
+                News Media</h1>
 
             <Sidebar />
             <div className='article-begin'>
