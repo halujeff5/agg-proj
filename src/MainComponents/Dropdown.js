@@ -18,7 +18,8 @@ const Dropdown = (options) => {
         setSelectedOption(option);
         setOptionState(option)
         setIsOpen(false);
-        stateCtx.addStates(option);
+        stateCtx.addPrefs(option);
+        stateCtx.addStates(option)
     
 
         navigate('/');  

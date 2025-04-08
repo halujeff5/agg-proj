@@ -9,7 +9,7 @@ import YoutubeDropdown from './YoutubeDropdown';
 import PublicationDropdown from './PublicationDropdown';
 import ButtonCardPub from './ButtonCardPub';
 
-    // this populates the dropdown list
+// this populates the dropdown list
 let topicSelection = ['artificial intelligence','math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
 
 let publicationSelection = ['BBC News', 'Fox News', 'Bloomberg', 'CNBC', 'The Verge', 'CBS News', 'ABC News']
@@ -23,7 +23,7 @@ const Sidebar = () => {
     const ytCtx = useContext(MyContext)
 
     console.log(pubCtx.pub)
-    console.log(stateCtx.states)
+    console.log('major', stateCtx.states)
     function deleteNewTopic() {
         stateCtx.deleteSelected(delCtx.del)
     }

@@ -127,9 +127,8 @@ body {
 
 
 .container {
-  margin-top: 0px;
+  padding-top: 50px;
   display: block;  
-  /* flex-wrap: wrap; */
   text-align: left;
   justify-content: left;
   
@@ -160,10 +159,12 @@ body {
 }
 
 .article-begin {
-  margin-top: -35px;
+  margin-top: 0px;
   display: block;
   text-align: left;
   margin-left: 210px;
+  overflow-y: scroll;
+  height: 800px;
 }
 
 .selection {
@@ -403,9 +404,11 @@ li {
 }
 
 .newsfeed {
-  margin-top: 70px;
+  margin-top: 50px;
+
 }
 
 .videos {
   margin: 20px;
 }
+

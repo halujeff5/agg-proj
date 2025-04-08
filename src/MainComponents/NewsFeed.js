@@ -7,7 +7,6 @@ import Dropdown from './Dropdown'
 import Sidebar from './Sidebar'
 import ButtonCard from './ButtonCard'
 import MyContext from '../hooks/MyContext'
-import ButtonCardDefault from './ButtonCardDefault'
 import YoutubeFeed from './YoutubeFeed'
 
 // accepts a state from contextAPI appends to checkboxes.
@@ -15,13 +14,19 @@ import YoutubeFeed from './YoutubeFeed'
 
 const NewsFeed = () => {
 
-    const apiKey = process.env.REACT_APP_APIKEY
+    const apiKey = process.env.REACT_APP_WORLD_NEWS
+    console.log(apiKey)
     // this context holds the selected states 
     const stateCtx = useContext(MyContext);
     //this context holds selected to make the API call
     const apiCtx = useContext(MyContext)
+    // this context holds the general options
+    const genCtx = useContext(MyContext)
     const newTopic = stateCtx.states
     const pref = apiCtx.pref
+
+    console.log('WHoop!', genCtx.genState)
+    const gen = genCtx.genState
     
     console.log('pref', pref)
 
@@ -42,23 +47,35 @@ const NewsFeed = () => {
         stateCtx.deleteSelected(delCtx.del)
     }
    
-    // fetch API for news articles according to {pref}
+    // fetch API for news articles according to {pref} and {gen}
+  
     async function getCategory() {
-        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${pref}&languages=en&limit=40`
+        
+        const config = {
+         headers : {
+            'apiKey' : apiKey,
+            'Content-Type' : 'application/json',
+        }
+        }
+     
+        // console.log('HEADER', headers)
+        
         try {
-            const resp = await axios.get(options);
-            console.log('+1', 1)
-
-            let arr1 = resp.data.data
-    // using utils.js function to clean resp object
-            let cleanedData = cleanData(arr1)
-    // using utils.js to keep only articles with images
-            let cleaner = getImagesOnly(cleanedData)
-            setArticles(cleaner)
+        let resp = await axios.get(`https://api.apilayer.com/world_news/search-news?text=${pref}&sort=publish-time&sort-direction=desc&language=en&number=20`, config)
+        
+        setArticles(resp.data.news)
+            
+            
+//     // using utils.js function to clean resp object
+//             // let cleanedData = cleanData(result)
+//     // using utils.js to keep only articles with images
+//         //     let cleaner = getImagesOnly(cleanedData)
+//         //     setArticles(cleaner)
         } catch (err) {
-            console.log(err)
+             console.log(err)
         }
     }
+
 
     // these are topics that are not default 
     async function getAdditional() {
@@ -81,19 +98,19 @@ const NewsFeed = () => {
 
     useEffect(() => {
         getCategory();
-        getAdditional();
+        // getAdditional();
         cleanTopic();
         deleteNewTopic();
-    }, [pref]
+    }, [gen, pref]
     )
 
-    let subj = pref == null ? 'Breaking' : pref;
+    let subj = gen == null ? 'Breaking' : gen;
 
     return (
         <body className = 'newsfeed-div'>
-
-            <h1 className='newsfeed'>
-                News Media</h1>
+       
+            {/* <h1 className='newsfeed'>
+                News Media</h1> */}
 
             <Sidebar />
             <div className='article-begin'>
@@ -104,11 +121,10 @@ const NewsFeed = () => {
                         <ArticleCard title={c.title}
                             key={c.key}
                             url={c.url}
-                            description={c.description}
+                            description={c.summary}
                             author={c.author}
                             image={c.image}
-                            publishedAt={c.published_at}
-                            publisher={c.source}
+                            publishedAt={c.publish_date}
                         />
 
                     ))}
@@ -117,10 +133,10 @@ const NewsFeed = () => {
             
             <YoutubeFeed />
             </div>
+     
         </body>
 
     )
-
-};
+                    };
 
 export default NewsFeed

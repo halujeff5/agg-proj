@@ -8,17 +8,19 @@ import { MyContextProvider } from './hooks/MyContext';
 
 function App() {
   return (
-    <MyContextProvider>
-    <>
-    <BrowserRouter>
-    <Routes>
-      <Route path = '/' exact element= {<Welcome />}></Route>
-      {/* <Route path = '/feed' exact element= {<NewsFeed />}></Route> */}
-    
-    </Routes>
-    </BrowserRouter>
-    </>
-    </MyContextProvider>
+
+      <MyContextProvider>
+        <>
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' exact element={<Welcome />}></Route>
+              {/* <Route path = '/feed' exact element= {<NewsFeed />}></Route> */}
+
+            </Routes>
+          </BrowserRouter>
+        </>
+      </MyContextProvider>
+
   );
 }
 

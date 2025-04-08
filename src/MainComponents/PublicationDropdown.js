@@ -30,7 +30,7 @@ const PublicationDropdown = (options) => {
 
             
         <div className = 'dropdown'>
-            <button onClick={() => setIsOpen(!isOpen)} className= 'dropdown-button'>Add Feed Topic
+            <button onClick={() => setIsOpen(!isOpen)} className= 'dropdown-button'>Add Publication
             </button>
 
             {isOpen && (

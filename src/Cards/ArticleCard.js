@@ -3,7 +3,7 @@ import '../App.css'
 import placeholder from '../static/placeholder.jpg'
 
 
-const ArticleCard = ({ title, key, url, description, author, image, publishedAt, publisher }) => {
+const ArticleCard = ({ title, key, url, description, author, image, publishedAt }) => {
 
     const imageURL = image
 
@@ -14,7 +14,7 @@ const ArticleCard = ({ title, key, url, description, author, image, publishedAt,
 
         if (hours < 1) {
             const minutes = Math.floor(timeDifference / (1000 * 60));
-            return `${minutes} minutes${minutes !== 1 ? 's' : ''} ago`;
+            return `${minutes} minutes${minutes !== 1 ? '' : 's'} ago`;
         } else {
             return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
         }
@@ -34,7 +34,6 @@ const ArticleCard = ({ title, key, url, description, author, image, publishedAt,
                 <a className='no-underline' href={url} target='_blank' rel="noreferrer"><h2 className='headline'>{title}</h2></a>
                 </div>
                 <h5 className='welcome'>Author: {author}</h5>
-                <h5 className='welcome'>Publication: {publisher}</h5>
                 <h6 className='earlier'>{hrsAgo}</h6>
 
 <hr

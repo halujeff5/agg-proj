@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react'
 
 
-export const MyContext = createContext({ states: 'artificial intelligence', pref: null, del: null, pub: 'BBC News', yt: 'Bloomberg Television'})
+export const MyContext = createContext({ states: 'artificial intelligence', pref: null, del: null, pub: 'BBC News', yt: 'Bloomberg Television', genState: null})
 
 
 export function MyContextProvider(props) {
@@ -75,12 +75,23 @@ export function MyContextProvider(props) {
         setYTState(ytState.filter((item) => item !== yt))
     }
 
+    // get the state from general buttons
+    const [ activeGenState, setActiveGenState ] = useState([])
+    
+    function addSelected2(genState) {
+            setActiveGenState(genState)
+        }
 
 
-    const context = { states: activeState, pref: getAPI, del: delState, pub: pubState, yt: ytState, sel: getYTAPI }
+
+    const context = { states: activeState, pref: getAPI, del: delState, pub: pubState, yt: ytState, sel: getYTAPI, genState: activeGenState  }
 
     // the values and functions we will need to accomplish our goal
     const value = {
+
+        genState: activeGenState,
+        addSelected : addSelected2,
+
         //news category states/functions
         states : activeState,
         addStates : addSelected,
