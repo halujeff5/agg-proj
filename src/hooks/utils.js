@@ -60,3 +60,17 @@ export function removeDups(arr) {
     const uniqueArr = [...new Set(arr)]
     return uniqueArr
 }
+
+export function timeSince(timestamp) {
+    const dateStr = new Date(timestamp)
+    const now = new Date().getTime();
+    const timeDifference = now - dateStr;
+    const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+
+    if (hours < 1) {
+        const minutes = Math.floor(timeDifference / (1000 * 60));
+        return `${minutes} minutes${minutes !== 1 ? '' : 's'} ago`;
+    } else {
+        return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+    }
+}

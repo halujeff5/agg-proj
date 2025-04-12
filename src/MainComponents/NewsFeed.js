@@ -51,27 +51,19 @@ const NewsFeed = () => {
   
     async function getCategory() {
         
-        const config = {
-         headers : {
-            'apiKey' : apiKey,
-            'Content-Type' : 'application/json',
-        }
-        }
-     
-        // console.log('HEADER', headers)
-        
         try {
-        let resp = await axios.get(`https://api.apilayer.com/world_news/search-news?text=${pref}&sort=publish-time&sort-direction=desc&language=en&number=20`, config)
-        
-        setArticles(resp.data.news)
+            let resp = await axios.get(`https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&sort=popularity&languages=en&limit=20`)
             
-            
-//     // using utils.js function to clean resp object
-//             // let cleanedData = cleanData(result)
-//     // using utils.js to keep only articles with images
-//         //     let cleaner = getImagesOnly(cleanedData)
-//         //     setArticles(cleaner)
-        } catch (err) {
+            console.log(resp.data.data)
+            let result = resp.data.data
+
+
+    // using utils.js function to clean resp object
+            let cleanedData = cleanData(resp.data.data)
+// //     // using utils.js to keep only articles with images
+            let cleaner = getImagesOnly(cleanedData)
+            setArticles(cleaner)}
+ catch (err) {
              console.log(err)
         }
     }
@@ -80,7 +72,7 @@ const NewsFeed = () => {
     // these are topics that are not default 
     async function getAdditional() {
         
-        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&languages=en&limit=40`
+        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${gen}&languages=en&limit=40`
 
         try {
             const resp = await axios.get(options);
@@ -96,35 +88,35 @@ const NewsFeed = () => {
     // this populates the dropdown list
     let topicSelection = ['artificial intelligence','math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
 
+    let subj = pref == null ? 'Breaking' : pref;
+
     useEffect(() => {
         getCategory();
         // getAdditional();
         cleanTopic();
         deleteNewTopic();
-    }, [gen, pref]
+    }, [pref, subj]
     )
 
-    let subj = gen == null ? 'Breaking' : gen;
+    
 
     return (
         <body className = 'newsfeed-div'>
-       
-            {/* <h1 className='newsfeed'>
-                News Media</h1> */}
-
             <Sidebar />
             <div className='article-begin'>
-                <h1 className='welcome-2'>{subj}</h1>
+                
                 <div className='container'>
-
+                <h1 className='newsfeed'>
+                    Media Results</h1>
+                    <h1 className='welcome-2'>{subj}</h1> 
                     {articles.map(c => (
                         <ArticleCard title={c.title}
                             key={c.key}
                             url={c.url}
-                            description={c.summary}
+                            description={c.description}
                             author={c.author}
                             image={c.image}
-                            publishedAt={c.publish_date}
+                            published_at={c.published_at}
                         />
 
                     ))}

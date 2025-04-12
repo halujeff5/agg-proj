@@ -1,9 +1,12 @@
 import React from 'react'
 import '../App.css'
 import placeholder from '../static/placeholder.jpg'
+import downloadImg from '../static/download.jpeg'
+import downloadLink from '../static/link.jpeg'
+import { Helpers } from '../MainComponents/helpers'
 
 
-const ArticleCard = ({ title, key, url, description, author, image, publishedAt }) => {
+const ArticleCard = ({ title, key, url, description, author, image, published_at }) => {
 
     const imageURL = image
 
@@ -20,32 +23,34 @@ const ArticleCard = ({ title, key, url, description, author, image, publishedAt 
         }
     }
 
+    // async function postToVault() {
+    //     try {
+    //         let res = await Helpers.postToVault({username, title, url, description, author, image, published_at})
+    //         console.log(res)
+    //     } catch(e) {
+    //         console.log(e)
+    //     }
+    //     }
 
-    const dateStr = new Date(publishedAt)
+
+    const dateStr = new Date(published_at)
 
     const hrsAgo = timeSince(dateStr)
     return (
         <>
             <div className='article-box'>
-                <div className= 'intro-title'>
-                <img className='image-serve' src={imageURL && imageURL.trim() !== '' ? image : placeholder}></img>
+                <div className='intro-title'>
+                    <img className='image-serve' src={imageURL && imageURL.trim() !== '' ? image : placeholder}></img>
                 </div>
-                <div className = 'intro-title'>
-                <a className='no-underline' href={url} target='_blank' rel="noreferrer"><h2 className='headline'>{title}</h2></a>
+                <div className='intro-title'>
+                    <a className='no-underline' href={url} target='_blank' rel="noreferrer"><h2 className='headline'>{title}</h2></a>
+                    <h6 className='earlier'>{hrsAgo}</h6>
                 </div>
-                <h5 className='welcome'>Author: {author}</h5>
-                <h6 className='earlier'>{hrsAgo}</h6>
+                <div className='details'>
+                <img className='image-dl' src= {downloadImg} alt='news-image'/>
+                <img className= 'image-link' src = {downloadLink}/>    
+                </div>
 
-<hr
-style = {{
-    color: '#FDFFE2',
-    backgroundColor: '#FDFFE2',
-    height: .25,
-    width: '1200px',
-    marginLeft: '10px'
-}}
-/>
-            
             </div>
         </>
     )

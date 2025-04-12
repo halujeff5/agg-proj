@@ -2,8 +2,7 @@ import React from 'react'
 import '../App.css'
 import logo from '../static/AMPLIFY.png'
 import NewsFeed from './NewsFeed'
-import Sidebar from './Sidebar'
-import YoutubeFeed from './YoutubeFeed'
+import ToolBar from './ToolBar'
 
 const Welcome = () => {
 
@@ -14,9 +13,12 @@ const Welcome = () => {
         <div className='slogan'>
         <h1 className = 'welcome-1'>Your</h1> 
         <h1 className = 'welcome-1'>News Media</h1>
+
         </div>
+       
         </div>
-      
+        <ToolBar />
+        
         <NewsFeed />
      
       

@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react'
 
 
-export const MyContext = createContext({ states: 'artificial intelligence', pref: null, del: null, pub: 'BBC News', yt: 'Bloomberg Television', genState: null})
+export const MyContext = createContext({ states: 'artificial intelligence', pref: null, del: null, pub: 'BBC News', yt: 'Bloomberg Television', genState: null, url: null, hidden: false})
 
 
 export function MyContextProvider(props) {
@@ -32,6 +32,12 @@ export function MyContextProvider(props) {
 
     //this context is to delete the yt option
     const [delYT, setDelYT] = useState([])
+
+    const [urlState, setUrlState] = useState([])
+
+    function addUrlState(url) {
+        setUrlState(url)
+    }
 
     // function context to add state context into main context
     function addSelected(states) {
@@ -82,9 +88,12 @@ export function MyContextProvider(props) {
             setActiveGenState(genState)
         }
 
+    const [hiddenState, setHiddenState] = useState(false)
+    function changeHiddenState() {
+        setHiddenState(!hiddenState)
+    }
 
-
-    const context = { states: activeState, pref: getAPI, del: delState, pub: pubState, yt: ytState, sel: getYTAPI, genState: activeGenState  }
+    const context = { states: activeState, pref: getAPI, del: delState, pub: pubState, yt: ytState, sel: getYTAPI, genState: activeGenState, url: urlState, hidden: hiddenState  }
 
     // the values and functions we will need to accomplish our goal
     const value = {
@@ -114,6 +123,12 @@ export function MyContextProvider(props) {
         fetchYTAPI: addYtAPI,
         delYTchannel : delYTchannel,
         sel : getYTAPI,
+
+        url : urlState,
+        addUrl : addUrlState,
+
+        hiddenState : hiddenState,
+        change : changeHiddenState,
     }
 
     return (

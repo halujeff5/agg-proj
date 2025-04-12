@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Welcome from './MainComponents/Welcome';
 import './App.css';
-import NewsFeed from './MainComponents/NewsFeed';
+import Subscribe from './MainComponents/Subscribe';
 import { MyContextProvider } from './hooks/MyContext';
 
 
@@ -14,7 +14,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path='/' exact element={<Welcome />}></Route>
-              {/* <Route path = '/feed' exact element= {<NewsFeed />}></Route> */}
+              <Route path = '/subscribe' exact element= {<Subscribe />}></Route>
 
             </Routes>
           </BrowserRouter>
