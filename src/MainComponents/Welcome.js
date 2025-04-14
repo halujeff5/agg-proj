@@ -8,6 +8,7 @@ const Welcome = () => {
 
     return (
         <body>
+       
         <div className= 'tab'>
         <img className='logo-size' src = {logo} alt='logo' />
         <div className='slogan'>

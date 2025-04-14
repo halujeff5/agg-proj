@@ -93,6 +93,15 @@ export function MyContextProvider(props) {
         setHiddenState(!hiddenState)
     }
 
+    function clearData() {
+        setActiveGenState(null)
+        setYTState(null)
+        setDelState(null)
+        setPubState(null)
+        setActiveState(null)
+        setUrlState(null)
+    } 
+
     const context = { states: activeState, pref: getAPI, del: delState, pub: pubState, yt: ytState, sel: getYTAPI, genState: activeGenState, url: urlState, hidden: hiddenState  }
 
     // the values and functions we will need to accomplish our goal
@@ -129,6 +138,7 @@ export function MyContextProvider(props) {
 
         hiddenState : hiddenState,
         change : changeHiddenState,
+
     }
 
     return (

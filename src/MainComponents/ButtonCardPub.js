@@ -1,8 +1,9 @@
-import React, { useState, useContext, createContext, useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import React, { useContext } from 'react'
 import '../App.css'
+import 'axios'
 import delIcon from '../static/icons8-x-48.jpg'
 import MyContext from '../hooks/MyContext'
+
 
 // take in contextAPI state for optionSelected to be a prop and text value
 
@@ -11,10 +12,11 @@ const ButtonCardPub = (prop) => {
     const delCtx = useContext(MyContext)
     const pubCtx = useContext(MyContext)
 
-    function handleClick(event) {
+    async function handleClick(event) {
         event.preventDefault()
         ytCtx.fetchYTAPI(event.target.value)
         pubCtx.getSelectedPub(event.target.value)
+
     }
 
     let text = prop.prop

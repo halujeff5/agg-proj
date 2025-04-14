@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import '../App.css'
 import MyContext from '../hooks/MyContext'
 import { Helpers } from './helpers'
+import axios from 'axios'
 import YoutubeVideos from './YoutubeVideos'
 import delicon from '../static/icons8-x-48.jpg'
 
@@ -9,22 +10,20 @@ const YoutubeFeed = () => {
     const ytCtx = useContext(MyContext)
     const urlCtx = useContext(MyContext)
     const hiddenCtx = useContext(MyContext)
-    
-    console.log('checking up', urlCtx.url)
+
     const [ytdata, setYTdata] = useState([])
-    const [URLState, setURLState ] = useState('')
-   
-    
-    console.log(ytCtx.sel)
+  
     const term = ytCtx.sel
     let subj = term == null ? null : term
    
     async function getVideoByCat() {
-        try {
-            let res = await Helpers.fetchYoutube(term)
-            console.log('checking', res)
+        const term = ytCtx.sel
+        console.log(term)
 
-            setYTdata(res)
+        try {
+            let res = await axios.request(`http://0.0.0.0:3001/youtube?term=${term}`)
+            console.log(res.data)
+            setYTdata(res.data)
         } catch (e) {
             console.log(e)
         }
@@ -37,9 +36,10 @@ const YoutubeFeed = () => {
     function handleDelete() {
         hiddenCtx.change(!hiddenCtx.hiddenState)
     }
-
+console.log(ytdata)
     return (
         <>
+       
         <img src= {delicon} className= 'close-video' onClick={handleDelete} 
         hidden={!hiddenCtx.hiddenState} 
         /> 

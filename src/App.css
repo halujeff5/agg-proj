@@ -458,8 +458,8 @@ li {
 .metadata {
   display: inline-flex;
   flex-wrap: 'wrap';
-  width: 630px;
-  padding: 25px;
+  width: 600px;
+  padding: 20px;
 }
 
 .yt-headline {
@@ -499,4 +499,22 @@ li {
   width: 30px;
   border-radius: 8px;
   margin-left: 15px;
+}
+
+.link {
+  border: none;
+  padding-right: -120px;
+  margin-right: -60px;
+
+}
+
+.toolbar-links {
+  display: inline;
+
+}
+
+.saveIcon {
+  height: 0px;
+  width: 0px;
+
 }
