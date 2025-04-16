@@ -1,0 +1,22 @@
+.form-register {
+    text-align: center;
+
+}
+
+input {
+    display: flex;
+    margin: 15px;
+}
+
+#log {
+    height: 40px;
+    width: 200px;
+    border: none;
+    background-color: #5A72A0;
+    color: #FDFFE2;
+}
+
+.signup-title {
+    font-size: 30px;
+    color: #FDFFE2;
+}

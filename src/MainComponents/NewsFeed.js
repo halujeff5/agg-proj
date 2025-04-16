@@ -1,174 +1,130 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import '../App.css'
 import ArticleCard from '../Cards/ArticleCard'
-import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { cleanData } from '../hooks/utils'
+import { cleanData, getImagesOnly, removeDups } from '../hooks/utils'
+import Dropdown from './Dropdown'
+import Sidebar from './Sidebar'
+import ButtonCard from './ButtonCard'
+import MyContext from '../hooks/MyContext'
+import YoutubeFeed from './YoutubeFeed'
+
+// accepts a state from contextAPI appends to checkboxes.
+// iterate over checkboxes state to map out the ButtonCards
 
 const NewsFeed = () => {
-    const navigate = useNavigate()
-    const [checkboxes, setCheckboxes] = useState([])
+
+    const apiKey = process.env.REACT_APP_WORLD_NEWS
+    console.log(apiKey)
+    // this context holds the selected states 
+    const stateCtx = useContext(MyContext);
+    //this context holds selected to make the API call
+    const apiCtx = useContext(MyContext)
+    // this context holds the general options
+    const genCtx = useContext(MyContext)
+    const newTopic = stateCtx.states
+    const pref = apiCtx.pref
+
+    console.log('WHoop!', genCtx.genState)
+    const gen = genCtx.genState
+    
+    console.log('pref', pref)
+
+    // context of what to delete from x icon 
+    const delCtx = useContext(MyContext)
+
+    const [checkboxes, setCheckboxes] = useState(['artificial intelligence']);
     const [articles, setArticles] = useState([]);
+    const [newTopics, setNewTopics] = useState([stateCtx.states]);
     
-    
-    const handleCheckboxChange = (event) => {
-        event.preventDefault()
-        console.log('EVENT', event.target.value)
-        if (event.target.checked === true);
-        setCheckboxes([...checkboxes, event.target.value]);
-
-        if (event.target.checked === false)
-        setCheckboxes(checkboxes.filter(topic => topic !== event.target.value))
-        console.log('TEST', checkboxes)
-      };
-// console.log('checkboxes', {checkboxes})
-
-    localStorage.setItem('checks', checkboxes)
-
-
-
-
-
-    const myTopicParams = {
-
-        'business': 'business',
-        'entertainment': 'entertainment',
-        'general': 'general',
-        'health': 'health',
-        'science': 'science',
-        'sports': 'sports',
-        'technology': 'technology',
-       
+    // removes duplicates from arr of selected topics (default topics not included)
+    function cleanTopic() {
+        let noDups = removeDups(stateCtx.states)
+        setNewTopics(noDups)
+    }
+    // context of a function that filters out the term and returns new arr of topis for user
+    function deleteNewTopic() {
+        stateCtx.deleteSelected(delCtx.del)
+    }
+   
+    // fetch API for news articles according to {pref} and {gen}
+  
+    async function getCategory() {
+      
+        try {
+            let resp = await axios.get(`https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&sort=published_desc&languages=en&countries=us&limit=20`)
+            console.log(resp.data.data)
+    // using utils.js function to clean resp object
+            let cleanedData = cleanData(resp.data.data)
+// //     // using utils.js to keep only articles with images
+            let cleaner = getImagesOnly(cleanedData)
+            setArticles(cleaner)}
+ catch (err) {
+             console.log(err)
+        }
     }
 
-async function getCategory() {
-    let pref = localStorage.getItem('checks')
-    console.log('prefs', pref)
-    let subj = pref ? pref.split(',') : '';
-    console.log('BING', subj)
-    let apiKey = process.env.REACT_APP_APIKEY
-    for (const [key, value] of Object.entries(myTopicParams))
-    {        
-    let options = `http://api.mediastack.com/v1/news?access_key=${apiKey}&categories=${value}&languages=en` 
-    
-    if (subj[0] === key || subj[1] ===key || subj[2] === key || subj[3] === key || subj[4] === key)
-    try {
-        const resp = await axios.request(options);
-        console.log(resp.data.data)
 
-        let cleanedData = cleanData(resp.data.data)
-
-        setArticles((prevData) => [...prevData, ...cleanedData])
-        navigate('/')
-
-    }catch(err) {
-        console.log(err)
-    }}
-  
-};
-
-    
-    return (
-        <>    
-        <h1 className= 'newsfeed'>
-        Morning Feed Topics</h1>
-        <div className='checkboxes'>
-        <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='general'
-          value = 'general'
-          onChange={handleCheckboxChange}
-        />General
-      </label>
-
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='business'
-          value='business'
-        //   checked={checkboxes.business}
-          onChange={handleCheckboxChange}
-        />Business
-      </label>
-
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='entertainment'
-          value='entertainment'
-        //   checked={checkboxes.entertainment}
-          onChange={handleCheckboxChange}
-        />Entertainment
-      </label>
-
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='health'
-          value= 'health'
-        //   checked={checkboxes.health}
-          onChange={handleCheckboxChange}
-        />Health
-      </label>
-      </div>
-<div className= 'checkboxes'>
-
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='science'
-          value = 'science'
-        //   checked={checkboxes.science}
-          onChange={handleCheckboxChange}
-        />Science
-      </label>
-
-
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='sports'
-          value = 'sports'
-        //   checked={checkboxes.sports}
-          onChange={handleCheckboxChange}
-        />Sports
-      </label>
-
-      <label className = 'labels'>
-        <input
-          type="checkbox"
-          name='technology'
-          value = 'technology'
-        //   checked={checkboxes.technology}
-          onChange={handleCheckboxChange}
-        />Technology
-      </label>
-      </div>
-
-      <button className='save' onClick= {getCategory}>Feed</button>
-      <div className='container'>
-    {articles.map(c=> (
-        <ArticleCard title= {c.title}
-        key = {c.key}
-        url= {c.url}
-        description= {c.description} 
-        author = {c.author}
-        image= {c.image}
-        publishedAt= {c.published_at}
-        publisher= {c.source}
-        />
+    // these are topics that are not default 
+    async function getAdditional() {
         
-    ))}
-</div>
+        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${gen}&languages=en&limit=40`
 
-    
-</>
+        try {
+            const resp = await axios.get(options);
+            console.log(resp.data.data)
+            let arr1 = resp.data.data
+            let cleanedData = cleanData(arr1)
+            let cleaner = getImagesOnly(cleanedData)
+            setArticles(cleaner)
+        } catch(err) {
+            console.log(err)
+        }
+    }
+    // this populates the dropdown list
+    let topicSelection = ['artificial intelligence','math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
 
-     
-        
+    let subj = pref == null ? 'Breaking' : pref;
+
+    useEffect(() => {
+        getCategory();
+        // getAdditional();
+        cleanTopic();
+        deleteNewTopic();
+    }, [pref, subj]
     )
 
-}
+    
+
+    return (
+        <body className = 'newsfeed-div'>
+            <Sidebar />
+            <div className='article-begin'>
+                
+                <div className='container'>
+                <h1 className='newsfeed'>
+                    Media Results</h1>
+                    <h1 className='welcome-2'>{subj}</h1> 
+                    {articles.map(c => (
+                        <ArticleCard title={c.title}
+                            key={c.key}
+                            url={c.url}
+                            description={c.description}
+                            author={c.author}
+                            image={c.image}
+                            published_at={c.published_at}
+                        />
+
+                    ))}
+                </div>
+           
+            
+            <YoutubeFeed />
+            </div>
+     
+        </body>
+
+    )
+                    };
 
 export default NewsFeed
