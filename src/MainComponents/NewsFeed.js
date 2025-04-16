@@ -50,14 +50,10 @@ const NewsFeed = () => {
     // fetch API for news articles according to {pref} and {gen}
   
     async function getCategory() {
-        
+      
         try {
-            let resp = await axios.get(`https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&sort=popularity&languages=en&limit=20`)
-            
+            let resp = await axios.get(`https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&sort=published_desc&languages=en&countries=us&limit=20`)
             console.log(resp.data.data)
-            let result = resp.data.data
-
-
     // using utils.js function to clean resp object
             let cleanedData = cleanData(resp.data.data)
 // //     // using utils.js to keep only articles with images

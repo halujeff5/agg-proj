@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import '../Vault.css'
-import { Helpers } from './helpers'
 import { useNavigate } from 'react-router-dom'
-
-
+import axios from 'axios'
+// let jwt = require('jsonwebtoken')
 
 const Subscribe = () => {
     const navigate = useNavigate()
@@ -15,16 +14,36 @@ const handleChange = (e) => {
 
 }
 
-let firstname = formData.firstname
-let lastname = formData.lastname
-let username = formData.username
-let password = formData.password
-let email = formData.email
+    let secretKey = process.env.REACT_APP_JWT_SECRET
+
+    let firstname = formData.firstname
+    let lastname = formData.lastname
+    let username = formData.username
+    let password = formData.password
+    let email = formData.email
 
 async function signUp() {
-    const res = await Helpers.signUpUser(firstname, lastname, username, password, email)
-    console.log(res)
+
+    // let token = jwt.sign({data: `${password}`}, secretKey)
+
+    let options = {
+        method : 'POST',
+        url : `http://0.0.0.0:3001/register`,
+        params : {
+            firstname : firstname,
+            lastname : lastname,
+            username : username,
+            password : password,
+            email : email
+        }
+    }
+    const res = await axios.request(options)
+    let user = res.data.user
+    let payload = res.data.token
+
+    if (user && payload) {
     navigate('/')
+    }
     }
 
 
