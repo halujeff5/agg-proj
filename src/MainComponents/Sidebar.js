@@ -3,7 +3,7 @@ import '../App.css'
 import ButtonCard from './ButtonCard';
 import MyContext from '../hooks/MyContext';
 import ButtonCardDefault from './ButtonCardDefault';
-// import channelId from '../channelIds;'
+import Podcast from './Podcast' 
 import Dropdown from './Dropdown';
 import YoutubeDropdown from './YoutubeDropdown';
 import PublicationDropdown from './PublicationDropdown';
@@ -66,6 +66,7 @@ const Sidebar = () => {
 
             </ul>
             <h1>Podcasts</h1>
+            <Podcast />
             <h1>Youtube Search</h1>
             <YoutubeDropdown />
             {ytCtx.yt.map(c => (

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../Vault.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-// let jwt = require('jsonwebtoken')
+import Modal from './Modal.js'
 
 const Subscribe = () => {
     const navigate = useNavigate()
@@ -50,6 +50,8 @@ async function signUp() {
 
 return (
     <>
+    <Modal />
+
     <h1 className = 'signup-title'>Sign Up Form</h1>
     <div className = 'register-form'>
     <form className= 'form-register' >
@@ -65,7 +67,6 @@ return (
 <div className='log-in-form'>
 <button id='log' onClick={signUp}>Sign In</button>
 </div>
-
 </>
 )
 

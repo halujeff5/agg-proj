@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import '../App.css'
 import axios from 'axios'
 import placeholder from '../static/placeholder.jpg'
 import downloadImg from '../static/download.jpeg'
-import downloadLink from '../static/link.jpeg'
+import ClipboardLink from '../MainComponents/ClipboardLink'
 
 const ArticleCard = ({ title, key, url, description, author, image, published_at }) => {
 
@@ -45,7 +45,6 @@ const ArticleCard = ({ title, key, url, description, author, image, published_at
         }
         }
 
-
     const dateStr = new Date(published_at)
 
     const hrsAgo = timeSince(dateStr)
@@ -61,7 +60,7 @@ const ArticleCard = ({ title, key, url, description, author, image, published_at
                 </div>
                 <div className='details'>
                 <img className='image-dl' onClick={postToVault} src= {downloadImg} alt='news-image' />
-                <img className= 'image-link' src = {downloadLink}/>    
+               <ClipboardLink url />
                 </div>
 
             </div>

@@ -20,3 +20,67 @@ input {
     font-size: 30px;
     color: #FDFFE2;
 }
+
+.modal-overlay {
+  position: fixed; /* Stay in place even when scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(90, 114, 160, 0.1); /* Semi-transparent black background */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 1000; /* Ensure it's on top */
+  
+}
+
+.modal-content {
+  display: inline;
+  background-color: #FDFFE2;
+  padding: 30px; /* Increased padding */
+  border-radius: 8px;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative; /* Needed for absolute positioning of the close button */
+  min-width: 300px; /* Minimum width */
+  max-width: 80%; /* Maximum width relative to viewport */
+  max-height: 80%; /* Maximum height */
+  overflow-y: auto; /* Add scroll if content overflows */
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  background: none;
+  border: solid;
+  border-radius: 20px;
+  width: 150px;
+  height: 40px;
+  color: #FDFFE2;
+  background-color: #5A72A0;
+  font-size: 18px; /* Make 'X' bigger */
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1; /* Ensure button doesn't take too much vertical space */
+}
+
+.modal-close-button:hover {
+  color: #000;
+}
+
+li, ul {
+    margin-left: -15px;
+}
+
+.heading {
+    font-weight: bold;
+}
+
+.podcast-input {
+    margin-left: 40px;
+    height: 25px;
+    width: 190px;
+    border: none;
+}
