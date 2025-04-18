@@ -79,8 +79,38 @@ li, ul {
 }
 
 .podcast-input {
-    margin-left: 40px;
+    margin-top: 50px;
+    margin-left: 0px;
     height: 25px;
     width: 190px;
     border: none;
+}
+
+.separate {
+    margin-top: 60px;
+    display: flex;
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.4);
+}
+
+.podcast-title {
+    text-align: left;
+    color: #FDFFE2;
+    margin-top: 70px;
+}
+
+.podcast-details {
+    display: block;
+    margin-top: 80px;
+    margin-left: 50px;
+  
+}
+
+.card {
+    display: flex;
+}
+
+.welcome-4 {
+    color: #FDFFE2;
+    display: block;
+
 }

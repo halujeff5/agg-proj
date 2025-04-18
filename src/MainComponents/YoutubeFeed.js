@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import '../App.css'
 import MyContext from '../hooks/MyContext'
-import { Helpers } from './helpers'
 import axios from 'axios'
 import YoutubeVideos from './YoutubeVideos'
 import delicon from '../static/icons8-x-48.jpg'

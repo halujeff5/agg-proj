@@ -18,10 +18,12 @@ const Welcome = () => {
         </div>
        
         </div>
+        <div className = 'toolbar'>
         <ToolBar />
-        
+        </div>
+       
         <NewsFeed />
-     
+      
       
         </body>
     )
