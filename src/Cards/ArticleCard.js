@@ -23,27 +23,27 @@ const ArticleCard = ({ title, key, url, description, author, image, published_at
     }
 
     async function postToVault() {
-       
+
         let options = {
-            method : 'POST',
-            url : 'http://0.0.0.0:3001/vault',
-            params : {
-                username : 'SnoopDogg',
-                title : title,
-                url : url,
-                description : description,
-                author : author,
-                image : image,
-                published_at : published_at
+            method: 'POST',
+            url: 'http://0.0.0.0:3001/vault',
+            params: {
+                username: 'SnoopDogg',
+                title: title,
+                url: url,
+                description: description,
+                author: author,
+                image: image,
+                published_at: published_at
             }
         }
         try {
             let res = await axios.request(options)
             console.log(res)
-        } catch(e) {
+        } catch (e) {
             console.log(e)
         }
-        }
+    }
 
     const dateStr = new Date(published_at)
 
@@ -59,8 +59,8 @@ const ArticleCard = ({ title, key, url, description, author, image, published_at
                     <h6 className='earlier'>{hrsAgo}</h6>
                 </div>
                 <div className='details'>
-                <img className='image-dl' onClick={postToVault} src= {downloadImg} alt='news-image' />
-               <ClipboardLink url />
+                    <img className='image-dl' onClick={postToVault} src={downloadImg} alt='news-image' />
+                    <ClipboardLink url />
                 </div>
 
             </div>

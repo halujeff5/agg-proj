@@ -1,10 +1,11 @@
 .form-register {
-    text-align: center;
-
+    width: 55%;
+    margin-left: auto;
+    
 }
 
 input {
-    display: flex;
+    display: block;
     margin: 15px;
 }
 
@@ -16,9 +17,11 @@ input {
     color: #FDFFE2;
 }
 
-.signup-title {
+.signup-title, .goodbye {
     font-size: 30px;
     color: #FDFFE2;
+    text-align: center;
+    display: block;
 }
 
 .modal-overlay {
@@ -112,5 +115,13 @@ li, ul {
 .welcome-4 {
     color: #FDFFE2;
     display: block;
+}
 
+.welcome-5 {
+    color: #FDFFE2;
+}
+
+
+a {    
+    color: #5A72A0
 }

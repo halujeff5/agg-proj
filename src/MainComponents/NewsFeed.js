@@ -103,7 +103,7 @@ const NewsFeed = () => {
                 
                 <div className='container'>
                 <h1 className='newsfeed'>
-                    Media Results</h1>
+                News</h1>
                     <h1 className='welcome-2'>{subj}</h1> 
                     {articles.map(c => (
                         <ArticleCard title={c.title}

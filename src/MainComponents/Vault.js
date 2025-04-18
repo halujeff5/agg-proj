@@ -3,6 +3,7 @@ import '../App.css'
 import axios from 'axios'
 import ArticleCard from '../Cards/ArticleCard'
 import VaultCard from '../Cards/VaultCard'
+import ToolBar from './ToolBar'
 
 const Vault = () => {
     
@@ -29,6 +30,7 @@ const Vault = () => {
 
     return (
         <>
+        <ToolBar />
         <h1 className= 'welcome-2'>Vault Articles</h1>
         {getVault.map(c => (
             <VaultCard title={c.title}
