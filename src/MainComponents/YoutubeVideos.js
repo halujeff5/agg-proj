@@ -3,11 +3,11 @@ import '../App.css'
 import { timeSince } from '../hooks/utils';
 import MyContext from '../hooks/MyContext'
 
-const YouTubeVideos = ({ videoId, description, publishTime, thumbnail }) =>  {
+const YouTubeVideos = ({ videoId, description, publishTime, thumbnail }) => {
 
-    const hiddenCtx = useContext(MyContext) 
+    const hiddenCtx = useContext(MyContext)
     const urlCtx = useContext(MyContext)
- 
+
     console.log('videoId', videoId)
 
     let elapsed = timeSince(publishTime)
@@ -22,20 +22,17 @@ const YouTubeVideos = ({ videoId, description, publishTime, thumbnail }) =>  {
         hiddenCtx.change(true)
     }
 
-return (
-    <>
-
-
-    <div className= 'metadata'>
-    <img className = 'thumbnail' src = {thumbnail} alt = 'intro-pic'/>
-    <div className= 'yt-headline'>
-    <button type='button' className= 'desc' name={videoId} value = {videoId} onClick={handleClick}>{desc}</button>
-    <h4 className= 'desc-1'>{elapsed}</h4>
-    </div>
-    </div>
-
-    </>
-)
+    return (
+        <>
+            <div className='metadata'>
+                <img className='thumbnail' src={thumbnail} alt='intro-pic' />
+                <div className='yt-headline'>
+                    <button type='button' className='desc' name={videoId} value={videoId} onClick={handleClick}>{desc}</button>
+                    <h4 className='desc-1'>{elapsed}</h4>
+                </div>
+            </div>
+        </>
+    )
 };
 
 
