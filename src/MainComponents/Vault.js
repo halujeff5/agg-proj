@@ -8,12 +8,15 @@ import ToolBar from './ToolBar'
 const Vault = () => {
     
     const [getVault, setGetVault] = useState([])
-
+    const username = localStorage.getItem('user')
     async function getDataFromVault() {
 
         let options = {
             method: 'GET',
-            url : `http://0.0.0.0:3001/vault`
+            url : `http://0.0.0.0:3001/vault`,
+            params : {
+                username: username
+            }
         }
         try {
         let ans = await axios.request(options)

@@ -59,8 +59,7 @@ const Login = () => {
                             <button id='log' onClick={logIn}>Log In</button>
                         </div>
 
-                        <div className = 'welcome-5'>Not yet a user, subscribe <a className = 'link-1' href='/subscribe'>HERE</a></div>
-
+                        <div className='welcome-5'>Not yet a user, subscribe <a className='link-1' href='/subscribe'>HERE</a></div>
                     </div>
                 </div>
             </>

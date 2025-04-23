@@ -1,26 +1,15 @@
-import React, { useCallback, useState } from 'react'
-import '../App.css'
-import axios from 'axios'
-import placeholder from '../static/placeholder.jpg'
-import downloadImg from '../static/download.jpeg'
-import ClipboardLink from '../MainComponents/ClipboardLink'
+import React, { useCallback, useState } from 'react';
+import '../App.css';
+import axios from 'axios';
+import placeholder from '../static/placeholder.jpg';
+import downloadImg from '../static/download.jpeg';
+import ClipboardLink from '../MainComponents/ClipboardLink';
+import { timeSince } from '../hooks/utils';
 
 const ArticleCard = ({ title, key, url, description, author, image, published_at }) => {
 
+    let username = localStorage.getItem('user')
     const imageURL = image
-
-    function timeSince(timestamp) {
-        const now = new Date().getTime();
-        const timeDifference = now - timestamp;
-        const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-
-        if (hours < 1) {
-            const minutes = Math.floor(timeDifference / (1000 * 60));
-            return `${minutes} minutes${minutes !== 1 ? '' : 's'} ago`;
-        } else {
-            return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
-        }
-    }
 
     async function postToVault() {
 
@@ -28,7 +17,7 @@ const ArticleCard = ({ title, key, url, description, author, image, published_at
             method: 'POST',
             url: 'http://0.0.0.0:3001/vault',
             params: {
-                username: 'SnoopDogg',
+                username: username,
                 title: title,
                 url: url,
                 description: description,
@@ -52,7 +41,7 @@ const ArticleCard = ({ title, key, url, description, author, image, published_at
         <>
             <div className='article-box'>
                 <div className='intro-title'>
-                    <img className='image-serve' src={imageURL && imageURL.trim() !== '' ? image : placeholder}></img>
+                    <img className='image-serve' src={imageURL !== null ? image : placeholder}></img>
                 </div>
                 <div className='intro-title'>
                     <a className='no-underline' href={url} target='_blank' rel="noreferrer"><h2 className='headline'>{title}</h2></a>

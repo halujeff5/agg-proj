@@ -11,6 +11,7 @@ body {
   font-family: "Quicksand", sans-serif;
   font-weight: 100;
   background-color: #1A2130;
+  width: 100%;
 }
 
 .tab {
@@ -41,18 +42,7 @@ body {
   right: 530px;
 }
 
-.link {
-  font-family: "Quicksand", sans-serif;
-  background-image: linear-gradient(#FDFFE2, #FDFFE2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 17px;
-  display: inline;
-  margin-left: 100px;
-  text-align: bottom;
-  align-items: bottom;
-  justify-content: bottom;
-}
+
 
 .welcome-1 {
   font-family: "Quicksand", sans-serif;
@@ -517,10 +507,22 @@ li {
 .link {
   border: none;
   padding-left: 0px;
+  font-family: "Quicksand", sans-serif;
+  background-image: linear-gradient(#FDFFE2, #FDFFE2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 17px;
+  display: inline;
+  margin-left: 50px;
+  text-align: bottom;
+  align-items: bottom;
+  justify-content: bottom;
 }
 
 .toolbar-links {
-  display: inline;
+  position: fixed;
+  top: 50px;
+  right: 50px;
   margin-left: 140px;
   padding-bottom: 20px;
 }

@@ -12,7 +12,6 @@ const Subscribe = () => {
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormData(formData => ({ ...formData, [name]: value }))
-
     }
 
     let secretKey = process.env.REACT_APP_JWT_SECRET
@@ -24,9 +23,6 @@ const Subscribe = () => {
     let email = formData.email
 
     async function signUp() {
-
-        // let token = jwt.sign({data: `${password}`}, secretKey)
-
         let options = {
             method: 'POST',
             url: `http://0.0.0.0:3001/register`,

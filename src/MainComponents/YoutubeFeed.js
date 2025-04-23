@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react'
-import '../App.css'
-import MyContext from '../hooks/MyContext'
-import axios from 'axios'
-import YoutubeVideos from './YoutubeVideos'
-import delicon from '../static/icons8-x-48.jpg'
+import React, { useEffect, useState, useContext, useMemo } from 'react';
+import '../App.css';
+import MyContext from '../hooks/MyContext';
+import axios from 'axios';
+import YoutubeVideos from './YoutubeVideos';
+import delicon from '../static/icons8-x-48.jpg';
 
 const YoutubeFeed = () => {
     const ytCtx = useContext(MyContext)
@@ -13,7 +13,10 @@ const YoutubeFeed = () => {
     const [ytdata, setYTdata] = useState([])
   
     const term = ytCtx.sel
-    let subj = term == null ? null : term
+
+    const memoValue = useMemo(() => {return term}, [ytdata]);
+
+    let subj = term != null ? term : memoValue
    
     async function getVideoByCat() {
         const term = ytCtx.sel
