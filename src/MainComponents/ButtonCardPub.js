@@ -32,11 +32,12 @@ const ButtonCardPub = (prop) => {
     // },[])
 
     return (
-        <>
+  
+          
             <button className='new-button-special' value={text} onClick={handleClick}>{text}
                 <img className='icon-relative' onClick={handleDelete} src={delIcon} alt='small-icon'></img>
             </button>
-        </>
+        
     )
 
 }

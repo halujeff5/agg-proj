@@ -34,7 +34,7 @@ const YoutubeDropdown = () => {
 
         return (
             <>
-            <div id = 'dropdown'>
+            <div id ='dropdown'>
             <button onClick={() => setIsOpen(!isOpen)} className= 'dropdown-button-yt'>Add Channel
             </button>
             

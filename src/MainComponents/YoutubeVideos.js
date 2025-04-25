@@ -23,7 +23,7 @@ const YouTubeVideos = ({ videoId, description, publishTime, thumbnail }) => {
     }
 
     return (
-        <>
+      
             <div className='metadata'>
                 <img className='thumbnail' src={thumbnail} alt='intro-pic' />
                 <div className='yt-headline'>
@@ -31,7 +31,7 @@ const YouTubeVideos = ({ videoId, description, publishTime, thumbnail }) => {
                     <h4 className='desc-1'>{elapsed}</h4>
                 </div>
             </div>
-        </>
+
     )
 };
 

@@ -56,8 +56,8 @@ console.log(ytdata)
                 />
          
             </div> 
-
-                <h1 className='welcome-2'>{subj}</h1>
+            <div className='display-metadata'>
+                <h1 className='yt-list'>{subj}</h1>
                 {ytdata.map(c => (
                     <YoutubeVideos
                         videoId={c.id.videoId}
@@ -66,7 +66,7 @@ console.log(ytdata)
                         thumbnail = {c.snippet.thumbnails.default.url}
                     />
                 ))}
-
+                </div>
             </div>
         </>
     )

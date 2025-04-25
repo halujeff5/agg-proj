@@ -13,7 +13,6 @@ import YoutubeFeed from './YoutubeFeed';
 const NewsFeed = () => {
 
     const apiKey = process.env.REACT_APP_WORLD_NEWS
-    console.log(apiKey)
     // this context holds the selected states 
     const stateCtx = useContext(MyContext);
     //this context holds selected to make the API call
@@ -25,7 +24,7 @@ const NewsFeed = () => {
 
     console.log('WHoop!', genCtx.genState)
     const gen = genCtx.genState
-    
+
     console.log('pref', pref)
 
     // context of what to delete from x icon 
@@ -36,8 +35,8 @@ const NewsFeed = () => {
     const [newTopics, setNewTopics] = useState([stateCtx.states]);
 
 
-    const memoValue = useMemo(() => {return pref}, [articles] )
-    
+    const memoValue = useMemo(() => { return pref }, [articles])
+
     // removes duplicates from arr of selected topics (default topics not included)
     function cleanTopic() {
         let noDups = removeDups(stateCtx.states)
@@ -47,28 +46,29 @@ const NewsFeed = () => {
     function deleteNewTopic() {
         stateCtx.deleteSelected(delCtx.del)
     }
-   
+
     // fetch API for news articles according to {pref} and {gen}
-  
+
     async function getCategory() {
-      
+
         try {
             let resp = await axios.get(`https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&sort=published_desc&languages=en&countries=us&limit=20`)
             console.log(resp.data.data)
-    // using utils.js function to clean resp object
+            // using utils.js function to clean resp object
             let cleanedData = cleanData(resp.data.data)
-// //     // using utils.js to keep only articles with images
+            // using utils.js to keep only articles with images
             let cleaner = getImagesOnly(cleanedData)
-            setArticles(cleaner)}
- catch (err) {
-             console.log(err)
+            setArticles(cleaner)
+        }
+        catch (err) {
+            console.log(err)
         }
     }
 
 
     // these are topics that are not default 
     // async function getAdditional() {
-        
+
     //     let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${gen}&languages=en&limit=40`
 
     //     try {
@@ -83,7 +83,7 @@ const NewsFeed = () => {
     //     }
     // }
     // this populates the dropdown list
-    let topicSelection = ['artificial intelligence','math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
+    let topicSelection = ['artificial intelligence', 'math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
 
     let subj = pref === null ? 'Breaking' : memoValue;
 
@@ -95,17 +95,16 @@ const NewsFeed = () => {
     }, [pref, subj]
     )
 
-    
+
 
     return (
-        <body className = 'newsfeed-div'>
+        <body className='newsfeed-div'>
             <Sidebar />
             <div className='article-begin'>
-                
                 <div className='container'>
-                <h1 className='newsfeed'>
-                Breaking News</h1>
-                    <h1 className='welcome-2'>{subj}</h1> 
+                    <h1 className='newsfeed'>
+                        Breaking News</h1>
+                    <h1 className='welcome-2'>{subj}</h1>
                     {articles.map(c => (
                         <ArticleCard title={c.title}
                             key={c.key}
@@ -115,17 +114,12 @@ const NewsFeed = () => {
                             image={c.image}
                             published_at={c.published_at}
                         />
-
                     ))}
                 </div>
-           
-            
-            <YoutubeFeed />
             </div>
-     
         </body>
 
     )
-                    };
+};
 
 export default NewsFeed

@@ -6,12 +6,13 @@
 
 body {
   padding: 40px;
-  padding-left: 20px;
+  padding-left: 40px;
   padding-top: 50px;
   font-family: "Quicksand", sans-serif;
   font-weight: 100;
   background-color: #1A2130;
   width: 100%;
+  z-index: 2;
 }
 
 .tab {
@@ -139,7 +140,6 @@ body {
 }
 
 .image-serve {
-  /* aspect-ratio: auto; */
   width: 130px;
   height: 90px;
   border-radius: 8px;
@@ -207,8 +207,8 @@ body {
 }
 
 .welcome-2 {
-  
-  margin-top: 10px;
+  position: relative;
+  top: 30px;
   /* margin-left: 210px; */
   text-transform: capitalize;
   background-image: linear-gradient(#FDFFE2, #FDFFE2);
@@ -224,6 +224,9 @@ body {
   z-index: 1;
   text-align: left;
   margin-left: 40px;
+  position: absolute;
+  left: 5px;
+  top: 160px;
 }
 
 .dropdown {
@@ -342,31 +345,35 @@ body {
 .icon-relative {
   width: 27px;
   height: 27px;
+  align-items: right;
+  justify-content: right;
+  text-align: right;
   position: absolute;
-  left: 200px;
-  top: 3px;
+  left: 220px;
+  margin-top: 5px;
   color : #1A2130;
   opacity: 20%;
   z-index: 2
 }
 
 .new-button-special {
-  display: block;
-  position: relative;
-  /* width: 150px; */
+  width: 300px; 
   /* height: 36px; */
-  /* line-height: 36px; */
+  line-height: 36px;
   color: #FDFFE2;
   border: none;
   z-index: 1;
   font-family: "Quicksand", sans-serif;
   font-size: 17px;
-  margin-bottom: 10px;
-  padding-left: 29px;
-  margin-top: 10px;
+  display: flex;
   background-color:  #1A2130;
-
 }
+
+.list-of-pubs {
+  margin-top: 150px;
+  
+}
+
 
 h1 {
   font-size: 22px; 
@@ -401,7 +408,7 @@ li {
   left: 0px;
   color: #FBE4D6;
   background-color: #1A2130;
-  margin-left: 35px;
+  margin-left: 50px;
   transition: .5s;
   overflow-y: auto;
   overflow-x: hidden; 
@@ -420,11 +427,32 @@ li {
 }
 
 .youtube {
+  margin-top: 10px;
   display: inline;
   margin-left: 120px;
   overflow-y: auto;
   overflow-x: hidden;
+  z-index: 2;
 }
+
+.yt-list {
+  position: absolute;
+  top: 700px;
+  left: 50px;
+  text-transform: capitalize;
+  background-image: linear-gradient(#FDFFE2, #FDFFE2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 22;
+  z-index: 2;  
+}
+
+.yt-element {
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
 
 .header {
   color: #FDFFE2;
@@ -437,20 +465,29 @@ li {
 
 .videos {
   margin: 20px;
+  z-index: 2;
 }
 
 .toolbar-links {
   margin-left: 720px;
   margin-top: -20px;
+  background-color: #1A2130;
+  margin-bottom: 20px;
 }
 
 .toolbar-links-unsubscribed {
   margin-left: 720px;
-  
+  background-color: #1A2130;
+  margin-bottom: 20px;
 }
 .video-title {
   text-align: center;
   display: hidden;
+  margin-top: -155px;
+  position: absolute;
+  left: 440px;
+  top: 250px;
+  z-index: 2;
 }
 
 .desc {
@@ -470,6 +507,10 @@ li {
   display: inline-flex;
   width: 500px;
   padding: 20px;
+}
+
+.display-metadata {
+  margin-top: 300px;
 }
 
 .yt-headline {
@@ -492,8 +533,9 @@ li {
 
 .close-video {
   position: relative;
-  top: 40px;
-  left: 1080px; 
+  top: -100px;
+  left: 1200px;
+  z-index: 1; 
 }
 
 .image-dl {
@@ -525,6 +567,7 @@ li {
   right: 50px;
   margin-left: 140px;
   padding-bottom: 20px;
+  background-color: 
 }
 
 .saveIcon {

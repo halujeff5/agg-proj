@@ -14,18 +14,22 @@ const Youtube = () => {
 
     return (
         <>
-            <ToolBar />
+            <div className='yt-element'>
+                <ToolBar />
+            </div>
             <h1 className='podcast-title'>Youtube</h1>
 
             <YoutubeDropdown />
-       
-                {ytCtx.yt.map(c => (
-                    <ButtonCardPub prop={c} />
-                ))}
- 
+
+            <div className='list-of-pubs'>
+            {ytCtx.yt.map(c => (
+                <ButtonCardPub prop={c} />
+            ))}
+</div>
             <div className='yt-div'>
                 <YoutubeFeed />
             </div>
+
         </>
     )
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../App.css'
 import axios from 'axios'
-import ArticleCard from '../Cards/ArticleCard'
 import VaultCard from '../Cards/VaultCard'
 import ToolBar from './ToolBar'
 
