@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 // function to clean resp data from api calls
 export function cleanData(data) {
     function removeDuplicates(data, keyFunction) {
@@ -73,4 +75,30 @@ export function timeSince(timestamp) {
     } else {
         return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
     }
+}
+
+
+export async function tts(data, x, y) {
+    
+    const optionsTTS = {
+        url : 'https://api.play.ht/api/v2/tts/stream', 
+        method: 'POST',
+        headers: {
+          accept: '*/*',
+          'Content-Type': 'application/json',
+          AUTHORIZATION: x,
+          'X-USER-ID': y },
+        body: JSON.stringify({
+          text: data,
+          voice: 's3://voice-cloning-zero-shot/d9ff78ba-d016-47f6-b0ef-dd630f59414e/female-cs/manifest.json',
+          output_format: 'mp3',
+          voice_engine: 'PlayDialog-turbo'
+        })
+    };
+
+    const response = await axios.request(optionsTTS)
+    let speech = await response.json()
+    console.log(speech)
+    return speech
+
 }

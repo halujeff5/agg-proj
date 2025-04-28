@@ -5,7 +5,8 @@ import axios from 'axios';
 import { cleanData, getImagesOnly, removeDups } from '../hooks/utils';
 import Sidebar from './Sidebar';
 import MyContext from '../hooks/MyContext';
-import YoutubeFeed from './YoutubeFeed';
+
+
 
 // accepts a state from contextAPI appends to checkboxes.
 // iterate over checkboxes state to map out the ButtonCards
@@ -19,18 +20,18 @@ const NewsFeed = () => {
     const apiCtx = useContext(MyContext)
     // this context holds the general options
     const genCtx = useContext(MyContext)
-    const newTopic = stateCtx.states
+    // const newTopic = stateCtx.states
     const pref = apiCtx.pref
 
     console.log('WHoop!', genCtx.genState)
-    const gen = genCtx.genState
+    // const gen = genCtx.genState
 
     console.log('pref', pref)
 
     // context of what to delete from x icon 
     const delCtx = useContext(MyContext)
 
-    const [checkboxes, setCheckboxes] = useState(['artificial intelligence']);
+    // const [checkboxes, setCheckboxes] = useState(['artificial intelligence']);
     const [articles, setArticles] = useState([]);
     const [newTopics, setNewTopics] = useState([stateCtx.states]);
 
@@ -52,7 +53,7 @@ const NewsFeed = () => {
     async function getCategory() {
 
         try {
-            let resp = await axios.get(`https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&sort=published_desc&languages=en&countries=us&limit=20`)
+            let resp = await axios.get(`https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&sort=published_desc&languages=en&countries=us&sources=cnn&limit=20`)
             console.log(resp.data.data)
             // using utils.js function to clean resp object
             let cleanedData = cleanData(resp.data.data)
@@ -83,7 +84,7 @@ const NewsFeed = () => {
     //     }
     // }
     // this populates the dropdown list
-    let topicSelection = ['artificial intelligence', 'math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
+    // let topicSelection = ['artificial intelligence', 'math', 'Donald Trump', 'gun control', 'sexuality', 'China', 'Europe', 'India', 'Japan', 'Korea', 'internet', 'Africa']
 
     let subj = pref === null ? 'Breaking' : memoValue;
 
@@ -107,7 +108,6 @@ const NewsFeed = () => {
                     <h1 className='welcome-2'>{subj}</h1>
                     {articles.map(c => (
                         <ArticleCard title={c.title}
-                            key={c.key}
                             url={c.url}
                             description={c.description}
                             author={c.author}

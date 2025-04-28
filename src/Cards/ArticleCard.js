@@ -1,15 +1,22 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import '../App.css';
 import axios from 'axios';
 import placeholder from '../static/placeholder.jpg';
 import downloadImg from '../static/download.jpeg';
 import ClipboardLink from '../MainComponents/ClipboardLink';
-import { timeSince } from '../hooks/utils';
+import readTTSImg from '../static/readTTS.jpeg'
+import { timeSince, tts } from '../hooks/utils';
 
-const ArticleCard = ({ title, key, url, description, author, image, published_at }) => {
+const APIKEY = process.env.REACT_APP_PLAYHTAPIKEY
+const USERID = process.env.REACT_APP_USER_ID
+
+const ArticleCard = ({ title, url, description, author, image, published_at }) => {
 
     let username = localStorage.getItem('user')
     const imageURL = image
+
+    // useEffect(() => {textToSpeech()}, 
+    // [])
 
     async function postToVault() {
 
@@ -34,6 +41,29 @@ const ArticleCard = ({ title, key, url, description, author, image, published_at
         }
     }
 
+    async function textToSpeech() {
+
+        let passURL = {
+            method: 'GET',
+            'Content-Type' : 'application/json',
+            url : 'http://0.0.0.0:3001/newsTTS',
+            params: {
+                url : url
+            }
+        }
+        try {
+            let resp = await axios.request(passURL)
+            let ans = resp.data
+            const input = ans.join('')
+            console.log('INPUT', input)
+            let speechFile = await tts(input, APIKEY, USERID)
+            console.log('I AM HERE!!')
+            console.log(speechFile)
+        }catch (e) {
+            console.log(e)
+        }
+    }
+
     const dateStr = new Date(published_at)
 
     const hrsAgo = timeSince(dateStr)
@@ -51,7 +81,11 @@ const ArticleCard = ({ title, key, url, description, author, image, published_at
                     <img className='image-dl' onClick={postToVault} src={downloadImg} alt='news-image' />
                     <ClipboardLink url />
                 </div>
-
+                <div className = 'details-1'>
+                    <img className  ='image-dl' onClick={textToSpeech} src={readTTSImg} />
+                </div>
+                <div>
+    </div>
             </div>
         </>
     )

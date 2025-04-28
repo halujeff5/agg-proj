@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import '../App.css'
-import axios from 'axios'
-import VaultCard from '../Cards/VaultCard'
-import ToolBar from './ToolBar'
+import React, { useState, useEffect } from 'react';
+import '../App.css';
+import axios from 'axios';
+import VaultCard from '../Cards/VaultCard';
+import ToolBar from './ToolBar';
 
 const Vault = () => {
     

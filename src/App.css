@@ -105,16 +105,31 @@ body {
 .intro-title {
   flex-wrap: wrap;
   padding-top: 0px;
+  cursor: pointer;
 }
 
 .details {
   display: inline;
   position: relative;
+  cursor: pointer;
   top: 13px;
   left: 63px;
   text-align: right;
   justify-content: right;
   align-items: right;
+}
+
+
+.details-1 {
+  cursor: pointer;
+  display: inline;
+  position: relative;
+  top: 13px;
+  left: 110px;
+  text-align: right;
+  justify-content: right;
+  align-items: right;
+
 }
 
 .image-link {
@@ -303,7 +318,7 @@ body {
 .new-button {
   display: block;
   /* position: relative; */
-  margin-left: -28px;
+  margin-left: 0px;
   top: 0px;
   font-family: "Quicksand", sans-serif;
   font-weight: 100;
@@ -393,7 +408,6 @@ li {
 }
 
 .menu-item {
-  margin-left: -15px;
   color: #FDFFE2;
 
 }

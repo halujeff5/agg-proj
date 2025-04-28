@@ -38,7 +38,7 @@ const Sidebar = () => {
         <>
             <div className='sidebar'>
                 <div className='sidebar-menu'>
-                    <h1>NewsFeed</h1>
+                    <h1 className='menu-item'>NewsFeed</h1>
                     <ul>
                         <h1 className='menu-item'>Standard</h1>
                         {newsState.map(c => (
