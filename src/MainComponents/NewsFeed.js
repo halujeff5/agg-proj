@@ -93,10 +93,10 @@ const NewsFeed = () => {
         // getAdditional();
         cleanTopic();
         deleteNewTopic();
-    }, [pref, subj]
+    }, [pref]
     )
 
-
+    {newTopics}
 
     return (
         <body className='newsfeed-div'>

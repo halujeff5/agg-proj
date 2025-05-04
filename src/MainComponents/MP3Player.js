@@ -1,24 +1,31 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
+import '../App.css'
 
 
-function MP3Player({ audioUrl }) {
-    const audioRef = useRef(null);
-  
-    useEffect(() => {
-      if (audioUrl) {
-        audioRef.current.load(); // Reload the audio element to play the new source
-      }
-    }, [audioUrl]);
-  
+function MP3Player({ audioUrl, error }) {
+    console.log(error)
+    console.log(audioUrl)
+
+    
+  const audioRef = useRef(null);
+    
     return (
       <div>
         {audioUrl ? (
-          <audio controls ref={audioRef} src={audioUrl}>
+          <>
+          <audio className= 'audioPill' preload = 'auto' controls ref={audioRef} src={audioUrl}>
             Your browser does not support the audio element.
           </audio>
+       <h4>{error}</h4>
+       </>
         ) : (
-          <p>Loading audio...</p>
+          <>
+          <audio className= 'audioPill' preload = 'auto' controls ref={audioRef} src={audioUrl}>
+        </audio>
+        <h4>{error}</h4>
+        </>
         )}
+            
       </div>
     );
   }

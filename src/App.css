@@ -10,7 +10,7 @@ body {
   padding-top: 50px;
   font-family: "Quicksand", sans-serif;
   font-weight: 100;
-  background-color: #1A2130;
+  background-color: white;
   width: 100%;
   z-index: 2;
 }
@@ -18,7 +18,7 @@ body {
 .tab {
   display: flex;
   z-index: 1;
-  bakground-color: #1A2130;
+  bakground-color: white;
   margin-left: -90px;
 }
 
@@ -48,8 +48,8 @@ body {
 .welcome-1 {
   font-family: "Quicksand", sans-serif;
   margin-left: 20px;
-  /* background: -webkit-linear-gradient(white, yellow); */
-  background-image: linear-gradient(#FDFFE2, #FDFFE2);
+  background: -webkit-linear-gradient(#1A2130, #1A2130);
+  /* background-image: linear-gradient(#FDFFE2, #FDFFE2); */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 22;
@@ -70,7 +70,7 @@ body {
 
 .newsfeed {
   font-family: "Quicksand", sans-serif;
-  color: #FDFFE2;
+  color: #1A2130;
   text-align: center;
   margin-top: 80px;
 
@@ -187,12 +187,12 @@ body {
   font-size: 15px;
   margin-left: 10px;
   margin-top: -1px;
-  color: #FDFFE2;
+  color: #1A2130;
   font-family: "Quicksand", sans-serif;
 }
 
 .headline {
-  color: #FDFFE2;
+  color: #1A2130;
   margin: 10px;
   margin-top: -5px;
   width: 350px;
@@ -212,7 +212,7 @@ body {
   display: inline;
   margin: 10px;
   background-color : #5A72A0;
-  color: #FDFFE2;
+  color: #1A2130;
   width: fit;
   padding: 9px;
   font-size: 14px;
@@ -224,9 +224,8 @@ body {
 .welcome-2 {
   position: relative;
   top: 30px;
-  /* margin-left: 210px; */
   text-transform: capitalize;
-  background-image: linear-gradient(#FDFFE2, #FDFFE2);
+  background-image: linear-gradient(#1A2130, #1A2130);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 22;
@@ -255,7 +254,7 @@ body {
 
 .dropdown-button {
   text-align: left;
-  background-color : #5A72A0;
+  background-color : #80a4d0;
   color: #FDFFE2;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -332,8 +331,8 @@ body {
   padding-left: 20px;
   padding-right: 20px; */
   z-index: 1;
-  background-color: #1A2130;
-  color: #FDFFE2;
+  background-color: white;
+  color: #1A2130;
   text-align: left;
   margin-bottom: 10px;
   /* line-height: 36px; */
@@ -375,13 +374,13 @@ body {
   width: 300px; 
   /* height: 36px; */
   line-height: 36px;
-  color: #FDFFE2;
+  color: #1A2130;
   border: none;
   z-index: 1;
   font-family: "Quicksand", sans-serif;
   font-size: 17px;
   display: flex;
-  background-color:  #1A2130;
+  background-color:  white;
 }
 
 .list-of-pubs {
@@ -408,7 +407,7 @@ li {
 }
 
 .menu-item {
-  color: #FDFFE2;
+  color: #1A2130;
 
 }
 
@@ -421,7 +420,7 @@ li {
   top: 180px;
   left: 0px;
   color: #FBE4D6;
-  background-color: #1A2130;
+  background-color: white;
   margin-left: 50px;
   transition: .5s;
   overflow-y: auto;
@@ -485,13 +484,13 @@ li {
 .toolbar-links {
   margin-left: 720px;
   margin-top: -20px;
-  background-color: #1A2130;
+  background-color: white;
   margin-bottom: 20px;
 }
 
 .toolbar-links-unsubscribed {
   margin-left: 720px;
-  background-color: #1A2130;
+  background-color: white;
   margin-bottom: 20px;
 }
 .video-title {
@@ -564,7 +563,7 @@ li {
   border: none;
   padding-left: 0px;
   font-family: "Quicksand", sans-serif;
-  background-image: linear-gradient(#FDFFE2, #FDFFE2);
+  background-image: linear-gradient(#1A2130, #1A2130);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 17px;
@@ -597,4 +596,11 @@ li {
 
 .yt-div {
   display: inline;
+}
+
+.audioPill {
+  margin-top: -10px;
+  margin-left: 5px;
+  height: 20px;
+  width: 220px;
 }
