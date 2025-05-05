@@ -125,3 +125,21 @@ li, ul {
 a {    
     color: #5A72A0
 }
+
+.search-query-button {
+    background-color : #80a4d0;
+    color: #FDFFE2;
+    width: 170px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center
+}
+
+.textbox-search {
+    width: 170px;
+    height: 25px;
+    align-items: center;
+    justify-content: center;
+}

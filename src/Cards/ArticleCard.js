@@ -9,15 +9,10 @@ import { timeSince, convertToStream } from '../hooks/utils';
 import MP3Player from '../MainComponents/MP3Player';
 import MyContext from '../hooks/MyContext';
 
-
-
-
-// const APIKEY = process.env.REACT_APP_PLAYHTAPIKEY
-// const USERID = process.env.REACT_APP_USER_ID
-
 const ArticleCard = ({ title, url, description, author, image, published_at }) => {
 
     const apiCtx = useContext(MyContext)
+    const genCtx = useContext(MyContext)
     let username = localStorage.getItem('user')
     const imageURL = image
     const [urlState, setUrlState] = useState(null)
@@ -72,7 +67,7 @@ const ArticleCard = ({ title, url, description, author, image, published_at }) =
     useEffect(() => {
         setUrlState(null)
         setErrorState(null)
-    }, [apiCtx.pref])
+    }, [apiCtx.pref, genCtx.genState])
     const dateStr = new Date(published_at)
     // console.log(urlState)
     const hrsAgo = timeSince(dateStr)
