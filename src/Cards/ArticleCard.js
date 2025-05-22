@@ -9,6 +9,7 @@ import { timeSince, convertToStream } from '../hooks/utils';
 import MP3Player from '../MainComponents/MP3Player';
 import MyContext from '../hooks/MyContext';
 
+
 const ArticleCard = ({ title, url, description, author, image, published_at }) => {
 
     const apiCtx = useContext(MyContext)
@@ -54,11 +55,11 @@ const ArticleCard = ({ title, url, description, author, image, published_at }) =
         try {
             let resp = await axios.request(passURL);
             let array = resp.data.data.data
-            console.log('array', array)
-            const urlStream = convertToStream(array)
-            setUrlState(urlStream)
-            console.log('stream OK')
-        } catch (e) {
+            let res = convertToStream(array)
+            setUrlState(res)
+            setErrorState( null)
+            }
+          catch (e) {
             setErrorState('stream not available')
             console.log(e)   
         }

@@ -21,9 +21,12 @@ const NewsFeed = () => {
     const genCtx = useContext(MyContext)
     // const newTopic = stateCtx.states
     const pref = apiCtx.pref
+    // this context holds the publications list
+    const pubCtx = useContext(MyContext)
 
     console.log('WHoop!', genCtx.genState)
     const gen = genCtx.genState
+    console.log(pubCtx.pub)
 
     console.log('pref', pref)
 
@@ -37,7 +40,7 @@ const NewsFeed = () => {
 
     const memoValue = useMemo(() => { return pref }, [articles])
     const memoValue1 = useMemo(() => { return gen }, [articles])
-
+    
     // removes duplicates from arr of selected topics (default topics not included)
     function cleanTopic() {
         let noDups = removeDups(stateCtx.states)
@@ -52,8 +55,10 @@ const NewsFeed = () => {
 
     async function getCategory() {
 
+        // const newsHash = { 'BBC News' : 'bbc', 'Fox News' : 'fox',  }
+
         try {
-            let resp = await axios.get(`https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&sort=published_desc&languages=en&countries=us&sources=cnn&limit=20`)
+            let resp = await axios.get(`https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${pref}&languages=en&countries=us&sources=bbc&limit=20`)
             console.log(resp.data.data)
             // using utils.js function to clean resp object
             let cleanedData = cleanData(resp.data.data)
@@ -72,7 +77,7 @@ const NewsFeed = () => {
 
     async function getAdditional() {
 
-        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${gen}&languages=en&limit=40`
+        let options = `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${gen}&sort=published_desc&languages=en&countries=us&sources=cnn&limit=40`
 
         try {
             const resp = await axios.get(options);
@@ -86,7 +91,7 @@ const NewsFeed = () => {
         }
     }
 
-    let subj = pref === null ? 'Breaking' : memoValue;
+    let subj = pref === null ? '' : memoValue + ' + ' + pubCtx.pub.slice(-1);
     let genTopic = gen === null ? null : memoValue1
 
     useEffect(() => {
