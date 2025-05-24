@@ -76,7 +76,7 @@ const ArticleCard = ({ title, url, description, author, image, published_at }) =
         <>
             <div className='article-box'>
                 <div className='intro-title'>
-                    <img className='image-serve' src={imageURL !== null ? image : placeholder}></img>
+                    <img className='image-serve' src={imageURL !== null ? image : placeholder} alt='news-image'></img>
                 </div>
                 <div className='intro-title'>
                     <a className='no-underline' href={url} target='_blank' rel="noreferrer"><h2 className='headline'>{title}</h2></a>
@@ -86,11 +86,11 @@ const ArticleCard = ({ title, url, description, author, image, published_at }) =
                     </div>
                 </div>
                 <div className='details'>
-                    <img className='image-dl' onClick={postToVault} src={downloadImg} alt='news-image' />
+                    <img className='image-dl' onClick={postToVault} src={downloadImg} alt='icon' />
                     <ClipboardLink url />
                 </div>
                 <div className='details-1'>
-                    <img className='image-dl' onClick={textToSpeech} src={readTTSImg} />
+                    <img className='image-dl' onClick={textToSpeech} src={readTTSImg} alt='icon' />
                 </div>
 
             </div>

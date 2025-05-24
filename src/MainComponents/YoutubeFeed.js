@@ -23,7 +23,7 @@ const YoutubeFeed = () => {
         console.log(term)
 
         try {
-            let res = await axios.request(`http://0.0.0.0:3001/youtube?term=${term}`)
+            let res = await axios.get(`http://0.0.0.0:3001/youtube?term=${term}`)
             console.log(res.data)
             setYTdata(res.data)
         } catch (e) {
@@ -74,4 +74,4 @@ console.log(ytdata)
 }
 
 
-export default YoutubeFeed
+export default YoutubeFeed;
