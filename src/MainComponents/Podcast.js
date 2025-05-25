@@ -41,7 +41,7 @@ const Podcast = () => {
             <form>
                 <input className='podcast-input' type='text' name='podcast-input' placeholder='Enter search topic' value={inputValue} onChange={handleInputChange} />
             </form>
-            <button className='dropdown-button' onClick={term}>search</button>
+            <button aria-label = 'finds podcasts' className='dropdown-button' onClick={term}>search</button>
 
             <div className = 'podcasts'>
 

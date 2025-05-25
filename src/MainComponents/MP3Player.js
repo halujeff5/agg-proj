@@ -13,14 +13,14 @@ function MP3Player({ audioUrl, error }) {
       <div>
         {audioUrl ? (
           <>
-          <audio className= 'audioPill' preload = 'auto' controls ref={audioRef} src={audioUrl}>
+          <audio aria-label="mp3player" className= 'audioPill' preload = 'auto' controls ref={audioRef} src={audioUrl}>
             Your browser does not support the audio element.
           </audio>
        <h4>{error}</h4>
        </>
         ) : (
           <>
-          <audio className= 'audioPill' preload = 'auto' controls ref={audioRef} src={audioUrl}>
+          <audio aria-label="mp3player" className= 'audioPill' preload = 'auto' controls ref={audioRef} src={audioUrl}>
         </audio>
         <h4>{error}</h4>
         </>

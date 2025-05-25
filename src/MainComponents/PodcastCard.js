@@ -10,13 +10,13 @@ const PodcastCard = ({ audio, key, audioLength, link, url, thumbnail }) => {
        
             <div className='card'>
                 <div className='separate'>
-                    <img className='welcome-4' src={thumbnail} />
+                    <img aria-label = 'podcast photo' className='welcome-4' src={thumbnail} />
                 </div>
 
                 <div className='podcast-details'>
-                    <a className='welcome-4' href={link} target='_blank' rel ='noreferrer'>podcast</a>
+                    <a aria-lebel= 'link' className='welcome-4' href={link} target='_blank' rel ='noreferrer'>podcast</a>
                     <h3 className='welcome-4'>{runtime} min</h3>
-                    <a className='welcome-4' href={url} target='_blank' rel = 'noreferrer'>podcast link</a>
+                    <a aria-label= 'link' className='welcome-4' href={url} target='_blank' rel = 'noreferrer'>podcast link</a>
                     <h3 className='welcome-4'>{link}</h3>
                 </div>
             </div>
